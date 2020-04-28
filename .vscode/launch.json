@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-SpringbootSecurity2MvcApplication<springboot-security-2-mvc>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.example.springbootsecurity2mvc.SpringbootSecurity2MvcApplication",
+            "projectName": "springboot-security-2-mvc",
+            "args": ""
+        }
+    ]
+}
