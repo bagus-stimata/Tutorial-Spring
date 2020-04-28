@@ -13,9 +13,9 @@ public class IndexView{
         return "Index from Spring Boot Bagus";
     }
 
-    @RequestMapping("/hello")
+    @RequestMapping("/home")
     public String hello(){
-        return "Hello from Spring Boot Bagus";
+        return "Home from Spring Boot Bagus";
     }
 
 
