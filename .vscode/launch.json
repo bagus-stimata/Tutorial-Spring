@@ -9,6 +9,16 @@
             "mainClass": "com.example.springbootsecurity2mvc.SpringbootSecurity2MvcApplication",
             "projectName": "springboot-security-2-mvc",
             "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-SpringSecurity1Application<spring-security-1>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.example.springsecurity1.SpringSecurity1Application",
+            "projectName": "spring-security-1",
+            "args": ""
         }
     ]
 }
