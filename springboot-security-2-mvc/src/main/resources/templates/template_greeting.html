@@ -9,6 +9,10 @@
     <p th:text="'Nama, ' + ${name} + '!'" />
     <p th:text="'Umur, ' + ${umur} + ' tahun'" />
 
+   
+    <p th:text="'Nama : ' + ${mahasiswa.nama} + ' '" />
+    <p th:text="'Alamat : ' + ${mahasiswa.getAlamat()} + ' '" />
+
     <p style="color: blue; ">View in dilekatkan pada Kelas spring UI model: yang 
         sebetulnya ini bersifat sebagai view</p>
 </body>

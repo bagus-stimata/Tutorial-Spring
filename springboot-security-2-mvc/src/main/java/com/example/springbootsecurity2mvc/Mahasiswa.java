@@ -1,6 +1,8 @@
 package com.example.springbootsecurity2mvc;
 
+import org.springframework.stereotype.Component;
 
+@Component("fooMahasiswa")
 public class Mahasiswa {
     private int ID = 0;
     private String nama = "";

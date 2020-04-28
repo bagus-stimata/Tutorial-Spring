@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class GreetingController {
+public class GreetingExtended {
 
     /*
     Ketika di auto wire maka akan berlaku untuk semua scoop aplikasi
@@ -16,25 +16,24 @@ public class GreetingController {
     Bahkan jika dibuka pada browser dan komputer lain: maka akan bernilai sama
     Jadi semacam Variable Global
     */
-    @Autowired
-    @Qualifier("fooMahasiswa")
-    private Mahasiswa mahasiswa;  //Qualifier: untuk memastikan saja
-
-    @GetMapping("/greeting_init")
+    @Autowired(required = false) //required: tidak terlalu berguna
+    @Qualifier("fooMahasiswa") //Qualifier: untuk memastikan saja
+    private Mahasiswa mhs;
+ 
+    @GetMapping("/greeting_view")
 	public String greeting(@RequestParam(name="name", required=false, defaultValue="Mas Kirun") String name, Model uiModel) {
+        name = "Mas Arif Rahman Hakim";
         uiModel.addAttribute("name", name);
-        int umur = 20;
+        int umur = 21;
         uiModel.addAttribute("umur", umur);
         
-        mahasiswa.setNama("Bagus Winarno");
-        mahasiswa.setAlamat("Dsn Wangkal Ds. Tengger Lor Kec. Kunjang Keb Kediri");
-        uiModel.addAttribute("mahasiswa", mahasiswa);
+        //Ini dilakukan di greeting_init: maka sekalai diisi nilai di greeting init maka akan berlaku di semua scope aplikasi
+        // mahasiswa.setNama("Bagus Winarno");
+        // mahasiswa.setAlamat("Dsn Wangkal Ds. Tengger Lor Kec. Kunjang Keb Kediri");
+        uiModel.addAttribute("mahasiswa", mhs);
 
-        /*
-        Return ini adalah merupakan nama file yang ada di resource
-        biasanay di bawah resource/template : oleh karena standart struktur dari thy
-        */
-		return "template_greeting"; 
+        //Menggunakan template greeting yang sama
+		return "template_greeting";
     }
     
 
