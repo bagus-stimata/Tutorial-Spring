@@ -39,6 +39,26 @@
             "mainClass": "com.example.springdata1thymeleaf.SpringData1ThymeleafApplication",
             "projectName": "springboot-data-1-thymeleaf",
             "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-SpringbootData1JdbcApplication<springboot-data-1-jdbc>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.example.springbootdata1jdbc.SpringbootData1JdbcApplication",
+            "projectName": "springboot-data-1-jdbc",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-SpringData2JpaApplication<springboot-data-2-jpa>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.example.springdata1thymeleaf.SpringData2JpaApplication",
+            "projectName": "springboot-data-2-jpa",
+            "args": ""
         }
     ]
 }

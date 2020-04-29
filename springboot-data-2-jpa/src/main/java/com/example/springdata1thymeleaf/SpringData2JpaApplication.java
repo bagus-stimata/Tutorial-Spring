@@ -62,4 +62,5 @@ public class SpringData2JpaApplication {
 		};
 		
 	}
+	
 }
