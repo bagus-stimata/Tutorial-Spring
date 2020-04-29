@@ -1,0 +1,5 @@
+Isinya pada folder
+- css
+- js
+
+dipindah ke root dari static agar bisa bekerja maksimal

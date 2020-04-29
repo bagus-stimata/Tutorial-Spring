@@ -19,6 +19,26 @@
             "mainClass": "com.example.springsecurity1.SpringSecurity1Application",
             "projectName": "spring-security-1",
             "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-Springboot1BootstrapApplication<springboot-1-bootstrap>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.example.springboot1bootstrap.Springboot1BootstrapApplication",
+            "projectName": "springboot-1-bootstrap",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-SpringData1ThymeleafApplication<springboot-data-1-thymeleaf>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.example.springdata1thymeleaf.SpringData1ThymeleafApplication",
+            "projectName": "springboot-data-1-thymeleaf",
+            "args": ""
         }
     ]
 }
