@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 public class SpringbootData1JdbcApplication {
 
-	//@Autowired
+	// @Autowired
 	JdbcPersonRepository jdbcPersonRepository;
 
 	public static void main(String[] args) {
@@ -25,10 +25,11 @@ public class SpringbootData1JdbcApplication {
 		return args -> {
 
 			Person person1 = new Person();
+			person1.setID(1);
 			person1.setName("bagus");
 			person1.setAddress("Bagus Winarno");
 	
-			// jdbcPersonRepository.save(person1);
+			jdbcPersonRepository.save(person1);
 		
 			// System.out.println("Let's inspect the beans provided by Spring Boot:");
 			// String[] beanNames = ctx.getBeanDefinitionNames();

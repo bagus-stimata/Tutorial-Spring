@@ -22,9 +22,9 @@ public class Todo {
     private LocalDate dateFrom;
     private LocalDate dateTo;
 
-    @ManyToOne
-    @JoinColumn(name = "personBean", referencedColumnName = "ID")
-    private Person personBean;
+    // @ManyToOne
+    // @JoinColumn(name = "personBean", referencedColumnName = "ID")
+    // private Person personBean;
 
     public int getID() {
         return ID;
@@ -58,13 +58,13 @@ public class Todo {
         this.dateTo = dateTo;
     }
 
-    public Person getPersonBean() {
-        return personBean;
-    }
+    // public Person getPersonBean() {
+    //     return personBean;
+    // }
 
-    public void setPersonBean(Person personBean) {
-        this.personBean = personBean;
-    }
+    // public void setPersonBean(Person personBean) {
+    //     this.personBean = personBean;
+    // }
 
     @Override
     public int hashCode() {

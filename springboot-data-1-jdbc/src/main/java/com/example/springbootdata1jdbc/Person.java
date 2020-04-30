@@ -19,8 +19,8 @@ public class Person {
     private String name = "";
     private String address = "";
 
-    @OneToMany(mappedBy = "personBean")
-    private List<Todo> todos;
+    // @OneToMany(mappedBy = "personBean")
+    // private List<Todo> todos;
     
 
     
@@ -77,26 +77,19 @@ public class Person {
 
 
     
+    // public List<Todo> getTodos() {
+    //     return todos;
+    // }
 
-    /**
-     * @return List<Todo> return the todos
-     */
-    public List<Todo> getTodos() {
-        return todos;
-    }
+    // public void setTodos(List<Todo> todos) {
+    //     this.todos = todos;
+    // }
 
-    /**
-     * @param todos the todos to set
-     */
-    public void setTodos(List<Todo> todos) {
-        this.todos = todos;
-    }
-
-    public Person(int iD, String name, String address, List<Todo> todos) {
+    public Person(int iD, String name, String address) {
         ID = iD;
         this.name = name;
         this.address = address;
-        this.todos = todos;
+       
     }
     public Person(){}
 

@@ -10,7 +10,9 @@ import com.example.springbootdata1jdbc.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class JdbcPersonRepository implements PersonRepository {
 
     @Autowired
@@ -21,9 +23,13 @@ public class JdbcPersonRepository implements PersonRepository {
         return jdbcTemplate.queryForObject("SELECT COUNT(*) FROM person", Integer.class);
     }
 
+    // @Override
+    // public int save(Person s) {
+    //     return jdbcTemplate.update("INSERT INTO person(ID, name, address) values(?,?, ?)", s.getID(), s.getName(), s.getAddress());
+    // }
     @Override
     public int save(Person s) {
-        return jdbcTemplate.update("INSERT INTO person(name, address) values(?,?)", s.getName(), s.getAddress());
+        return 0;
     }
 
     @Override
