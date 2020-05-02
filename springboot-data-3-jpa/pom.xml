@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>springboot-data-2-jpa</artifactId>
+	<artifactId>springboot-data-3-jpa</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>springboot-data-2-jpa</name>
+	<name>springboot-data-3-jpa</name>
 	<description>Demo project for Spring Boot belajar menggunakn spring data unsing thyleaf</description>
 
 	<properties>
@@ -38,6 +38,7 @@
 			<scope>runtime</scope>
 			<optional>true</optional>
 		</dependency>
+		
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
@@ -48,6 +49,13 @@
 			<artifactId>postgresql</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>

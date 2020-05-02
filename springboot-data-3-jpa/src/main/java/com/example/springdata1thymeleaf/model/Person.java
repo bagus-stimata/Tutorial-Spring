@@ -1,4 +1,4 @@
-package com.example.springdata1thymeleaf;
+package com.example.springdata1thymeleaf.model;
 
 import java.util.List;
 

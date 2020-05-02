@@ -47,6 +47,7 @@ public class SpringbootData2JdbcExtApplication implements CommandLineRunner{
 		person1.setAddress("Jalan Jalan Bos");
 
 		try{
+			
 			personJDBCRepository.insert(person1);
 		} catch (Exception e) {
 			logger.error("Error simpan person");

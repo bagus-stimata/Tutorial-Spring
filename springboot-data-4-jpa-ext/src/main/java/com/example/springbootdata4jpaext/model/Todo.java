@@ -1,4 +1,4 @@
-package com.example.springdata1thymeleaf;
+package com.example.springbootdata4jpaext.model;
 
 import java.time.LocalDate;
 
