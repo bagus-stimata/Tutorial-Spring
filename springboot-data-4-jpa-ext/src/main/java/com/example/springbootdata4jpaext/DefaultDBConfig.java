@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
-import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -23,8 +22,8 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-// @Configuration
-// @EnableTransactionManagement
+@Configuration
+@EnableTransactionManagement
 @PropertySource({"classpath:persistence-multiple-db-boot.properties"})
 @EnableJpaRepositories( entityManagerFactoryRef= "defaultEntityManager", transactionManagerRef = "defaultTransactionManager", basePackages =  "com.example.springbootdata4jpaext.repo_default" )
 public class DefaultDBConfig {
@@ -33,9 +32,9 @@ public class DefaultDBConfig {
     private Environment env;
 
     @Primary
-    @Bean(name = "dataSource")
+    @Bean(name = "defaultDataSource")
     @ConfigurationProperties(prefix="spring.datasource")
-    public DataSource dataSource(){
+    public DataSource defaultDataSource(){
         return DataSourceBuilder.create().build();
     }
 
@@ -47,12 +46,14 @@ public class DefaultDBConfig {
     //     return builder.dataSource( dataSource).packages("com.example.springbootdata4jpaext.model").persistenceUnit("defaultDB_PU").build();
     // }
 
-    @Primary
-    @Bean
+    // @Primary
+    // @Bean
+    @Bean(name = "defaultEntityManager")
     public LocalContainerEntityManagerFactoryBean defaultEntityManager() {
         final LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
-        em.setDataSource(dataSource());
+        em.setDataSource(defaultDataSource());
         em.setPackagesToScan("com.example.springbootdata4jpaext.model");
+        em.setPersistenceUnitName("defaultDB_PU");
 
         final HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);
@@ -63,12 +64,6 @@ public class DefaultDBConfig {
 
         return em;
     }    
-    // @Primary
-    // @Bean(name = "transactionManager")
-    // public PlatformTransactionManager transactionManager(
-    //   @Qualifier("transactionManager") EntityManagerFactory entityManagerFactory) {
-    //     return new JpaTransactionManager(entityManagerFactory);
-    // }
 
     @Primary
     @Bean
