@@ -3,7 +3,6 @@ package com.example.springbootdata4jpaext;
 
 import java.util.HashMap;
 
-import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
 import org.springframework.core.env.Environment;
@@ -20,8 +19,8 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-@Configuration
-@EnableTransactionManagement
+// @Configuration
+// @EnableTransactionManagement
 @PropertySource({"classpath:persistence-multiple-db-boot.properties"})
 @EnableJpaRepositories( entityManagerFactoryRef= "secondEntityManager", transactionManagerRef = "secondTransactionManager", basePackages =  "com.example.springbootdata4jpaext.repo_second" )
 public class ExtendedDBConfig {
@@ -29,6 +28,10 @@ public class ExtendedDBConfig {
     @Autowired
     private Environment env;
 
+    public ExtendedDBConfig() {
+        super();
+    }    
+    
     @Bean(name = "secondDataSource")
     @ConfigurationProperties(prefix="spring.second-datasource")
     public DataSource secondDataSource(){

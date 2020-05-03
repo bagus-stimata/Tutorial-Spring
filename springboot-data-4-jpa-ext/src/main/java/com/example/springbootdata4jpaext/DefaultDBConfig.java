@@ -3,12 +3,10 @@ package com.example.springbootdata4jpaext;
 
 import java.util.HashMap;
 
-import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
 import org.springframework.core.env.Environment;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
@@ -31,6 +29,10 @@ public class DefaultDBConfig {
     @Autowired
     private Environment env;
 
+    // public DefaultDBConfig() {
+    //     super();
+    // }    
+    
     @Primary
     @Bean(name = "defaultDataSource")
     @ConfigurationProperties(prefix="spring.datasource")
