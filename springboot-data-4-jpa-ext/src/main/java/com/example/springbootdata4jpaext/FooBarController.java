@@ -24,8 +24,10 @@ public class FooBarController {
 
   @RequestMapping("/foobar/{id}")
   public String fooBar(@PathVariable("id") Long id) {
-    System.out.println("Oke dipanggil #### ##############");
-    fooRepo.findAll();
+    System.out.println("Oke dipanggil ####");
+    System.out.println("Foo Size: " +  fooRepo.findAll().size());
+    System.out.println("Bar Size: " +  barRepo.findAll().size());
+
     // Foo foo = fooRepo.findById(id)
     // Bar bar = barRepo.findById(id);
 
