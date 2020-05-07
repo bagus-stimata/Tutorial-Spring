@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+</html><head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+    <h1>Welcome To Main Page</h1>
+    <h2>Using www.thymeleaf.org</h2>
+    <p th:text="'Nama mu, ' + ${name} + '!'" />
+    
+    <div sec:authentication="name">
+        The value of the "name" property of the authentication object should appear here.
+    </div>
+
+    Logged user: <span sec:authentication="name">Bob</span>
+    <br>
+    Roles: <span sec:authentication="principal.authorities">[ROLE_USER, ROLE_ADMIN]</span>    
+    <br><br><br>
+
+    <div sec:authorize="isAuthenticated()">
+        This content is only shown to authenticated users.
+    </div>
+    <div sec:authorize="hasRole('ROLE_ADMIN')">
+        This content is only shown to administrators.
+    </div>
+    <div sec:authorize="hasRole('ROLE_USER')">
+        This content is only shown to users.
+    </div>
+
+    <p style="color: blue; ">View in dilekatkan pada Kelas spring UI model: yang 
+        sebetulnya ini bersifat sebagai view</p>
+</body>
+</html>

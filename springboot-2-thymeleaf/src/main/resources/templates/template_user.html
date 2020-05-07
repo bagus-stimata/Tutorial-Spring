@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <script type="text/javascript" th:src="@{/js/users-client.js}"></script>
+
+</head>
+
+<body>
+    <h1>USER PAGE</h1>
+    <p th:text="'Namamu mas, ' + ${name} + '!'" />
+ 
+    <p th:text="'Dari Foo, ' + ${ foo.getFoo() } + '!'" />
+
+    <button type="button" th:onclick="showName(nameJs);">Show Name</button>
+
+    <button type="button" th:onclick="showAlert();">Show Name</button>
+
+    <button onclick="showAlert()">Try it</button>
+    <button onclick="myFunction()">Try it</button>
+
+    <script>
+        function myFunction() {
+        alert("Hello! I am an alert box!");
+        }
+    </script>
+
+</body>
+</html>
