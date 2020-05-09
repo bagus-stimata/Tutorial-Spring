@@ -14,6 +14,11 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class MyPageController {
 
+    @RequestMapping("/")
+    public String index(){
+        return "index";
+    }
+
     @GetMapping("/homePage")
 	public String homePage(@RequestParam(name="name", required=false, defaultValue="-- Masukkan Nama --") String name, Model uiModel) {
         uiModel.addAttribute("name", name);

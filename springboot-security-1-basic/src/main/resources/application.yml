@@ -1,5 +1,5 @@
 server:
-    port: 8081
+  port: 8081
 
 spring:
   thymeleaf:
@@ -7,9 +7,8 @@ spring:
     check-template: true
     check-template-location: true
     servlet:
-      content-type: text/html
-#    content-type: text/html
-
+      content-type: text/html;
+    # content-type: text/html
     enabled: true
     encoding: UTF-8
     mode: HTML
