@@ -6,7 +6,7 @@
 <head>
     <title>Login Form</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link href="../static/css/main.css" rel="stylesheet" th:href="@{css/main.css}" />
+    <link rel="stylesheet" th:href="@{~/css/main.css}" />
 </head>
 
 <body>
@@ -30,16 +30,24 @@
             <br>
             <a class="btn btn-success" th:href="@{/logout}">Logout Other Way (More Efective)</a><br>
 
-            
-            <div>
-                Nama User: <span sec:authentication="name"></span> 
-            </div>
-
             <br>
+            <div>
+                Nama User: <b><span sec:authentication="name"></span> </b>
+            </div>
+            <div>
+               Nama User: <u><span th:text="${namaUser}" /> </u>
+            </div>
+            <div>
+                Principal: <u><span th:text="${principal}" /> </u>
+             </div>
+             <div>
+                Nama User: <u><span th:text="${userName}" /> </u>
+             </div>
+              <br>
         </div>
 
-        <div sec:authorize="hasRole('ADMIN_ROLE')"><a href="/admin" >to Admin Page</a></div>
-        <div sec:authorize="hasRole('USER_ROLE')"><a href="/user" >to User Page</a></div>
+        <div sec:authorize="hasRole('ADMIN_ROLE')"><a th:href="@{/admin}" >to Admin Page</a></div>
+        <div sec:authorize="hasRole('USER_ROLE')"><a th:href="@{/user}" >to User Page</a></div>
         <div></dive><a href="/test" >test role page</a></div>
         <div><a th:href="@{/test}">test other way</a></div>
         <br><br>

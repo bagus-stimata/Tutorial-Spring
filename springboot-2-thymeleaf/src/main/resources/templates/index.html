@@ -1,21 +1,69 @@
 <!DOCTYPE HTML>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<!-- <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"> -->
 <html>
 <head>
     <title>Getting Started: Serving Web Content</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     
-    <link href="../static/css/main.css" rel="stylesheet"  th:href="@{/css/main.css}" />
+    <!-- <link href="../static/css/main.css" rel="stylesheet"  th:href="@{~/css/main.css}" /> -->
+    <link  rel="stylesheet" th:href="@{~/css/main.css}" />
+    <script th:src="@{~/js/form-validation.js}"></script>
 
     <!-- Bootstrap core CSS -->
     <!-- <link href="../static/css/bootstrap.css" rel="stylesheet" th:href="@{/css/bootstrap.css}"/> -->
+    <!-- <link th:rel="stylesheet" th:href="@{~/webjars/font-awesome/css/all.css} "/>  -->
+
+    <script th:src="@{~/webjars/jquery/jquery.min.js}"></script>
+
+    <!-- <link rel="stylesheet" th:href="@{~/webjars/bootstrap/css/bootstrap.min.css} "/> -->
+ 
+    <!-- <script th:src="@{~/js/form-valition.js}"></script> -->
+    <!-- <script src="../static/js/form-validation.js"></script> -->
+
+    <!-- <link rel=”stylesheet” href=”https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css”> -->
+
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+    
+    <script >
+      $(document).ready(function(){
+        //  $("#registration").submit(function(){
+        //     alert("hello world");
+        //  });
+        $("#registration").validate();
+      });
+    </script>
+
+ 
 
 </head>
-<body>
-    <H1>ROOT Page</H1>
-    <p>Go To homePage <a href="/homePage">here</a></p>
 
-    <br>
-    <p>Jika tidak ada @RequestMapping("/") atau @GetMapping("/") maka index.html ini, akan otomatis dijalankan</p>
+<body>
+    <!-- <H1>ROOT Page</H1>
+    <p>Go To homePage <a href="/homePage">here</a></p>
+    <p>Jika tidak ada @RequestMapping("/") atau @GetMapping("/") maka index.html ini, akan otomatis dijalankan</p> -->
+     
+    <div class="container">
+      <h2>Registration</h2>
+      <form action="" name="registration" id="registration">
+    
+        <label for="firstname">First Name</label>
+        <input type="text" name="firstname" id="firstname" placeholder="John"/>
+    
+        <label for="lastname">Last Name</label>
+        <input type="text" name="lastname" id="lastname" placeholder="Doe"/>
+    
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" placeholder="john@doe.com"/>
+    
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;"/>
+    
+        <button type="submit">Register</button>
+    
+      </form>
+    </div>
+
 </body>
 </html>
