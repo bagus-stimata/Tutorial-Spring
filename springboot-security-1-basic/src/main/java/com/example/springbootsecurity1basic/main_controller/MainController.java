@@ -47,12 +47,12 @@ public class MainController {
         return "index";
     }
 
-    @GetMapping("/admin")
+    @GetMapping("/admin-view")
     // @ResponseBody //supaya tidak memerlukan homeIndex.html -> Jadi sperti rest
     public String adminPage(){
         return "admin_page";
     }
-    @GetMapping("/user")
+    @GetMapping("/user-view")
     public String userPage(){
         return "user_page";
     }

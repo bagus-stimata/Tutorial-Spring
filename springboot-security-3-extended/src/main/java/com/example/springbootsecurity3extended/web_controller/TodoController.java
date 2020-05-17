@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.example.springbootsecurity3extended.SecurityConfig.SecurityUtils;
 import com.example.springbootsecurity3extended.model.Role;
 import com.example.springbootsecurity3extended.model.Status;
 import com.example.springbootsecurity3extended.model.Task;
@@ -42,7 +43,7 @@ public class TodoController {
     private TaskService taskService;
 
     @Autowired
-    private GlobalController globalController;
+    private SecurityUtils securityUtils;
 
 
     @PreAuthorize("hasAnyRole({'" + Role.USER + "', '" + Role.ADMIN + "'})") //Perhatikan hasRole dan hasAnyRole
@@ -61,8 +62,8 @@ public class TodoController {
 
         final Task task =new Task();
         viewModel.addAttribute("reqTask", task);
-        viewModel.addAttribute("allTask", taskService.findByUserIdStatus(globalController.getLoginUser().getId(), Status.ACTIVE.getValue()));
-        viewModel.addAttribute("allPassiveTask", taskService.findByUserIdStatus(globalController.getLoginUser().getId(), Status.PASSIVE.getValue()));
+        viewModel.addAttribute("allTask", taskService.findByUserIdStatus(securityUtils.getLoginUser().getId(), Status.ACTIVE.getValue()));
+        viewModel.addAttribute("allPassiveTask", taskService.findByUserIdStatus(securityUtils.getLoginUser().getId(), Status.PASSIVE.getValue()));
         logger.info("# Form Task");
       
         return "/task/task";
@@ -77,9 +78,9 @@ public class TodoController {
 
         viewModel.addAttribute("reqTask", task);
         // viewModel.addAttribute("allTask", taskService.findByUserIdStatus(globalController.getLoginUser().getID(), Status.ACTIVE.getValue()));
-        viewModel.addAttribute("allPassiveTask", taskService.findByUserIdStatus(globalController.getLoginUser().getId(), Status.PASSIVE.getValue()));
+        viewModel.addAttribute("allPassiveTask", taskService.findByUserIdStatus(securityUtils.getLoginUser().getId(), Status.PASSIVE.getValue()));
 
-        final List<Task> listTask = new ArrayList<>(taskService.findByUserIdStatus(globalController.getLoginUser().getId(), Status.ACTIVE.getValue()) );
+        final List<Task> listTask = new ArrayList<>(taskService.findByUserIdStatus(securityUtils.getLoginUser().getId(), Status.ACTIVE.getValue()) );
         if (search_text.equals("12345_6789")) {
             viewModel.addAttribute("allTask", listTask );
             viewModel.addAttribute("search_text", "");
@@ -103,7 +104,7 @@ public class TodoController {
         try {
             reqTask.setCreateDate(LocalDateTime.now());
             reqTask.setStatus(Status.ACTIVE.getValue());
-            reqTask.setUserId(globalController.getLoginUser().getId() );
+            reqTask.setUserId(securityUtils.getLoginUser().getId() );
 
             taskService.save(reqTask);
             redirectAttributes.addFlashAttribute("msg", "success");

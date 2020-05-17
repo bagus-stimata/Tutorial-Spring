@@ -3,7 +3,7 @@ package com.example.springbootsecurity3extended.web_controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.springbootsecurity3extended.config.PassEncoding;
+import com.example.springbootsecurity3extended.SecurityConfig.PassEncoding;
 import com.example.springbootsecurity3extended.jpa_repository.UserRolesRepository;
 import com.example.springbootsecurity3extended.jpa_repository.UsersRepository;
 import com.example.springbootsecurity3extended.model.FUser;
@@ -42,11 +42,11 @@ public class MainController {
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     public String homeIndex(Model viewModel){
 
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String namaUser = auth.getName(); //jika tidak ada akan memberikan nilai null
-        String principal_1 = auth.getPrincipal().toString();
-        viewModel.addAttribute("namaUser", namaUser);
-        viewModel.addAttribute("principal", principal_1);
+        // Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        // String namaUser = auth.getName(); //jika tidak ada akan memberikan nilai null
+        // String principal_1 = auth.getPrincipal().toString();
+        // viewModel.addAttribute("namaUser", namaUser);
+        // viewModel.addAttribute("principal", principal_1);
 
         return "index";
     }

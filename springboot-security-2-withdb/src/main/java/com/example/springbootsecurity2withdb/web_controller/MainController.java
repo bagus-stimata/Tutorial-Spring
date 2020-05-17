@@ -19,25 +19,29 @@ public class MainController {
     public String Root(){
         return "index";
     }
+
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     public String homeIndex(Model viewModel){
-
+      
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String namaUser = auth.getName(); //jika tidak ada akan memberikan nilai null
-        String principal_1 = auth.getPrincipal().toString();
-        viewModel.addAttribute("namaUser", namaUser);
-        viewModel.addAttribute("principal", principal_1);
+        if (auth !=null) {
+            String namaUser = auth.getName(); //jika tidak ada akan memberikan nilai null
+            String principal_1 = auth.getPrincipal().toString();
+            viewModel.addAttribute("namaUser", namaUser);
+            viewModel.addAttribute("principal", principal_1);
 
-        String userName = null;
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            String userName = null;
+            Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-        if (principal instanceof UserDetails) {
-            userName = ((UserDetails) principal).getUsername();
-        } else {
-            userName = principal.toString();
-        }      
+            if (principal instanceof UserDetails) {
+                userName = ((UserDetails) principal).getUsername();
+            } else {
+                userName = principal.toString();
+            }      
 
-        viewModel.addAttribute("userName", userName);        
+            viewModel.addAttribute("userName", userName);        
+        }
+
         return "index";
     }
     @RequestMapping(value = "/login", method = RequestMethod.GET)

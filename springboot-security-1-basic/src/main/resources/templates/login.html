@@ -1,73 +1,75 @@
 <!DOCTYPE html>
 
 <!-- <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"> -->
-<html xmlns:th="http://www.thymeleaf.org" >
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <title>Login Form</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <!-- <link href="../static/css/main.css" rel="stylesheet" th:href="@{~/css/main.css}" /> -->
-    <link  rel="stylesheet" th:href="@{~/css/main.css}" />
+    <link rel="stylesheet" th:href="@{~/css/main.css}" />
 
-       <!-- <script th:src="@{/webjars/bootstrap/4.4.1-1/js/bootstrap.min.js}"></script> -->
-       <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
-       <!-- <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.4.1-1/css/bootstrap.min.css} "/> -->
-       <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.css} "/>
-       <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap-responsive.css} "/>
-   
-       <link th:rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.css} "/>
-    
+    <!-- <script th:src="@{/webjars/bootstrap/4.4.1-1/js/bootstrap.min.js}"></script> -->
+    <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+    <!-- <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.4.1-1/css/bootstrap.min.css} "/> -->
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.css} " />
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap-responsive.css} " />
 
-</head>    
+    <link th:rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.css} " />
+
+
+</head>
 </head>
 
 <body>
-    <div class="card text-center" style="margin-bottom: 2rem;" >
+    <div class="card text-center" style="margin-bottom: 2rem;">
         <div class="card-header ">
             <h1>Login</h1>Header
         </div>
     </div>
-   
 
-   <form th:action="@{/login}" method="POST">
-    <!-- <div class="container justify-content-center align-items-center"> -->
-    <div class="continer row h-100 justify-content-center align-items-center">
-        <div class="jumbotron jumbotron-fluid shadow-lg">
-            <div class="container">
-                <div th:if="${param.error}">
-                    <label style="color:red">Invalid username and password.</label>        
-                </div>
-        
-                <div th:if="${param.logout}">
-                    <label style="color:blue; font-size: large;">
+    <form th:action="@{/login}" method="POST">
+        <div class="container justify-content-center align-items-center" style="max-width: 400px;">
+            <!-- <div class="continer row h-100 justify-content-center align-items-center"> -->
+            <div class="jumbotron jumbotron-fluid shadow-lg">
+                <div class="container">
+                    <div th:if="${param.error}">
+                        <label style="color:red">Invalid username and password.</label>
+                    </div>
+
+                    <div th:if="${param.logout}">
+                        <label style="color:blue; font-size: large;">
                         You have been logged out.
                     </label>
-                </div>  
+                    </div>
 
-                <table class="table">
-                    <tr>
-                        <td><label> User Name  </label></td>
-                        <td> <input type="text" name="username"/></td>
-                    </tr>
-                    <tr>
-                        <td><label> Password </label></td>
-                        <td><input type="password" name="password"/></td>
-                    </tr>
-                </table>               
-                <hr class="my-2">
-                <p><button type="submit" name="" id="" class="btn btn-primary" >Sign In</button></p>
-                <p><a th:href="@{/login}" >Refresh this page</a></p>                
+                    <table class="table">
+                        <tr>
+                            <td><label> User Name  </label></td>
+                            <td> <input type="text" name="username" /></td>
+                        </tr>
+                        <tr>
+                            <td><label> Password </label></td>
+                            <td><input type="password" name="password" /></td>
+                        </tr>
+                    </table>
+                    <hr class="my-2">
+                    <p><button type="submit" name="" id="" class="btn btn-primary">Sign In</button></p>
+                    <p><a th:href="@{/login}">Refresh this page</a></p>
+                </div>
             </div>
-        </div>
     </form>
 
 
- 
 
-        
-    
+
+
+
     </div>
- 
+
 </body>
-  
+
 </html>
