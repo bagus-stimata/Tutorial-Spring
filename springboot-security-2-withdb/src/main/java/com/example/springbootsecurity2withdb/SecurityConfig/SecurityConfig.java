@@ -1,11 +1,8 @@
 package com.example.springbootsecurity2withdb.SecurityConfig;
 
-import com.example.springbootsecurity2withdb.model.Role;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -40,6 +37,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
     // @Autowired
     // private CustomUserDetailsService userDetailsService;
 
+    /**
+     *  Ingat
+     *  userService melakukan inject dengan AuthUserDetilsService
+     *      @Service
+     *      public class AuthUserDetailsService implements UserDetailsService { 
+     *  sehingga semua opasi didalam file implement nya dijalankan: Cek Operasi yang ada
+     */
     @Autowired
     private UserDetailsService userDetailsService;
 
@@ -154,48 +158,48 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
     }
     
 	/**
-     * Just use for  ### VAADIN FLOW ####
+     * ### VAADIN FLOW #### membutuhkan konfigurasi ini
 	 * Allows access to static resources, bypassing Spring security.
 	 */
-	@Override
-	public void configure(WebSecurity web) {
-		web.ignoring().antMatchers(
+	// @Override
+	// public void configure(WebSecurity web) {
+	// 	web.ignoring().antMatchers(
 
-				// Vaadin Flow static resources
-				"/VAADIN/**",
+	// 			// Vaadin Flow static resources
+	// 			"/VAADIN/**",
 
-				// // the standard favicon URI
-				"/favicon.ico",
+	// 			// // the standard favicon URI
+	// 			"/favicon.ico",
 
-				// // the robots exclusion standard
-				"/robots.txt",
+	// 			// // the robots exclusion standard
+	// 			"/robots.txt",
 
-				// // web application manifest
-				"/manifest.webmanifest",
-				"/sw.js",
-				"/offline-page.html",
+	// 			// // web application manifest
+	// 			"/manifest.webmanifest",
+	// 			"/sw.js",
+	// 			"/offline-page.html",
 
-				// // icons and images
-				"/icons/**",
-				"/images/**",
+	// 			// // icons and images
+	// 			"/icons/**",
+	// 			"/images/**",
 
-				// // (development mode) static resources
-				"/frontend/**",
+	// 			// // (development mode) static resources
+	// 			"/frontend/**",
 
-                /**
-                 * #### INI BUAT ERROR TIME STAMP YA ####
-                 */
-				// // (development mode) webjars
-				// "/webjars/**",
+    //             /**
+    //              * #### INI BUAT ERROR TIME STAMP YA ####
+    //              */
+	// 			// // (development mode) webjars
+	// 			// "/webjars/**",
 
-				// // (development mode) H2 debugging console
-				"/h2-console/**",
+	// 			// // (development mode) H2 debugging console
+	// 			"/h2-console/**",
 
-				// // (production mode) static resources
-                "/frontend-es5/**", "/frontend-es6/**"
+	// 			// // (production mode) static resources
+    //             "/frontend-es5/**", "/frontend-es6/**"
                 
-                );
-	}
+    //             );
+	// }
 
 
     // @Autowired

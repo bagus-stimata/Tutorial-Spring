@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -13,7 +14,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
-// @EnableGlobalMethodSecurity(prePostEnabled = true)
+@EnableGlobalMethodSecurity(prePostEnabled = true) //Tidak bisa digunakan pada Vaadin
 public class BasicConfiguration extends WebSecurityConfigurerAdapter {
 
 
@@ -49,8 +50,15 @@ public class BasicConfiguration extends WebSecurityConfigurerAdapter {
                     "/img/**",
                     "/webjars/**", "/registration").permitAll()
 
-                .antMatchers("/admin-view").hasRole("ADMIN")
-                .antMatchers("/user-view").hasAnyRole("USER", "USER")
+                /**
+                 * Menggunakan pasangan
+                 * - @EnableGlobalMethodSecurity(prePostEnabled = true) dan 
+                 * - @PreAuthorize("hasAnyRole('USER')")
+                 *  Juga bisa
+                 */
+                // .antMatchers("/admin-view").hasRole("ADMIN")
+                // .antMatchers("/user-view").hasAnyRole("USER", "USER")
+
                 .antMatchers("/anonymous*").anonymous()
                 .antMatchers("/login*").permitAll() 
                 .anyRequest().authenticated()

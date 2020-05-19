@@ -3,16 +3,23 @@ package com.example.springbootsecurity3extended.model;
 import org.apache.commons.lang3.ArrayUtils;
 
 public class Role {
-	public static final String USER = "USER";
-	// This role implicitly allows access to all views.
-	public static final String ADMIN = "ADMIN";
-	public static final String ACCOUNTING = "ACCOUNTING";
-	public static final String GUEST = "GUEST"; //as default
+	/**
+	 * boleh tidak ditambahkan ROLE_ 
+	 * misal ADMIN menjadi ROLE_ADMIN
+	 * penambahan pada:
+	 *  	authList.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+	 * 	oleh karena untuk menyamakan dengan konsep @Secure("ROLE_ADMIN") 
+	 *  vaadin maka sebaiknya ditambahkan
+	 */
+	public static final String USER = "ROLE_USER";
+	public static final String ADMIN = "ROLE_ADMIN";
+	public static final String ACCOUNTING = "ROLE_ACCOUNTING";
+	public static final String GUEST = "ROLE_GUEST"; //as default
 
 	//Menu digunakan suatu penanda MNU
-	public static final String MNU_ADMIN_1 = "MNU_ADMIN_1";
-	public static final String MNU_PROFILE_1 = "MNU_PROFILE_1";
-	public static final String MNU_PERSON_1 = "MNU_PERSON_1";
+	public static final String MNU_ADMIN_1 = "ROLE_MNU_ADMIN_1";
+	public static final String MNU_PROFILE_1 = "ROLE_MNU_PROFILE_1";
+	public static final String MNU_PERSON_1 = "ROLE_MNU_PERSON_1";
 
 	private Role() {
 		// Static methods and fields only

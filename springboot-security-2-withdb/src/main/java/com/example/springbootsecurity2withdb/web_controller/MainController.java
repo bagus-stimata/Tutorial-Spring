@@ -56,6 +56,8 @@ public class MainController {
     /**
      * Otomatis dibaca:
      *  ROLE_ADMIN, ROLE_USER, ROLE_ACCOUNTING
+     * oleh karena keperluan penyamaan dengan konsep vaadin
+     * maka semuanya diberi awalan ROLE_
      */
 
     @PreAuthorize("hasRole('" + Role.ADMIN + "')") 
@@ -70,7 +72,7 @@ public class MainController {
         return "/accounting/index";
     }
 
-    @PreAuthorize("hasAnyRole({'" + Role.USER + "', '" + Role.ADMIN + "'})") //Perhatikan hasRole dan hasAnyRole
+    @PreAuthorize("hasAnyRole({'" + Role.USER + "', '" + Role.USER + "'})") //Perhatikan hasRole dan hasAnyRole
     @RequestMapping(value = "/profile/index", method = RequestMethod.GET)
     public String Profile(){
         return "/profile/index";

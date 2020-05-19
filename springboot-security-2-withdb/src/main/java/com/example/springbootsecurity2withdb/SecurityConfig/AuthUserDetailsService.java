@@ -18,7 +18,7 @@ import com.example.springbootsecurity2withdb.model.FUserRoles;
 import com.example.springbootsecurity2withdb.service.UserService;
 
 /**
- *  Ini akan disamngkan dengan spring security SystemConfiguration
+ * @Service akan melakukan inject dengan Spring Security User Configuration
  */
 @Service
 public class AuthUserDetailsService implements UserDetailsService {
@@ -79,12 +79,25 @@ public class AuthUserDetailsService implements UserDetailsService {
 
         return authList;
     }
-
+    /**
+     * Recommended Method
+     */
     public List<GrantedAuthority> getAuthorities(FUser fuser) {
 
         List<GrantedAuthority> authList = new ArrayList<GrantedAuthority>();
+        /**
+         * Spring Security Selalu membutuhkan SimplleGranted Autority menggunanakn awalan ROLE_
+         * sedangkan vaadin harus sama persis
+         * Sehingga diambil jalan tengahnya menggunakan awalal ROLE_ untuk 
+         * Enumerasi Role
+         */
+
         for (FUserRoles userRole: fuser.getFuserRoles()) {
-            authList.add(new SimpleGrantedAuthority("ROLE_" + userRole.getRoleID()));
+            if (userRole.getRoleID().contains("ROLE_") ) {
+                authList.add(new SimpleGrantedAuthority( userRole.getRoleID()));
+            }else {
+             authList.add(new SimpleGrantedAuthority("ROLE_" + userRole.getRoleID()));
+            }
         }
        
         return authList;

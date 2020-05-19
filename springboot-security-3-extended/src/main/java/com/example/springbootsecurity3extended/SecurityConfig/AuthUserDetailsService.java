@@ -82,8 +82,19 @@ public class AuthUserDetailsService implements UserDetailsService {
     public List<GrantedAuthority> getAuthorities(FUser fuser) {
 
         List<GrantedAuthority> authList = new ArrayList<GrantedAuthority>();
+        /**
+         * Spring Security Selalu membutuhkan SimplleGranted Autority menggunanakn awalan ROLE_
+         * sedangkan vaadin harus sama persis
+         * Sehingga diambil jalan tengahnya menggunakan awalal ROLE_ untuk 
+         * Enumerasi Role
+         */
+
         for (FUserRoles userRole: fuser.getFuserRoles()) {
-            authList.add(new SimpleGrantedAuthority("ROLE_" + userRole.getRoleID()));
+            if (userRole.getRoleID().contains("ROLE_") ) {
+                authList.add(new SimpleGrantedAuthority( userRole.getRoleID()));
+            }else {
+             authList.add(new SimpleGrantedAuthority("ROLE_" + userRole.getRoleID()));
+            }
         }
        
         return authList;

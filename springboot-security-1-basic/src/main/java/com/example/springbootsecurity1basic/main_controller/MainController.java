@@ -47,11 +47,14 @@ public class MainController {
         return "index";
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/admin-view")
     // @ResponseBody //supaya tidak memerlukan homeIndex.html -> Jadi sperti rest
     public String adminPage(){
         return "admin_page";
     }
+
+    @PreAuthorize("hasAnyRole('USER')")
     @GetMapping("/user-view")
     public String userPage(){
         return "user_page";
@@ -62,7 +65,7 @@ public class MainController {
         return "login";
     }
 
-    //@PreAuthorize("hasRole('ADMIN_ROLE')")
+    @PreAuthorize("hasRole('ADMIN_ROLE')")
     @GetMapping("/test")
     @ResponseBody
     public String testPage(){
