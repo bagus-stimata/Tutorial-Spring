@@ -42,76 +42,76 @@ public class GreetingController {
                 System.out.println(detilItem.getDescription());
             }
         }
-        list = new ArrayList<>();
-        list.add(personJPARepository.findByID(2));
-        nama += " ######### AUTOMATIC JPQL ############ ";
-        for (Person domain: list ){
-            nama += ++counter+ ". " + domain.getName() + " (" + domain.getAddress() + ") => ";
+        // list = new ArrayList<>();
+        // list.add(personJPARepository.findByID(2));
+        // nama += " ######### AUTOMATIC JPQL ############ ";
+        // for (Person domain: list ){
+        //     nama += ++counter+ ". " + domain.getName() + " (" + domain.getAddress() + ") => ";
            
-            for (Todo detilItem: domain.getTodos()) {
-                todos += ++counterTodo+ ". " + detilItem.getDescription() + "\t"; 
-                System.out.println(detilItem.getDescription());
-            }
-        }
+        //     for (Todo detilItem: domain.getTodos()) {
+        //         todos += ++counterTodo+ ". " + detilItem.getDescription() + "\t"; 
+        //         System.out.println(detilItem.getDescription());
+        //     }
+        // }
 
 
-        list = new ArrayList<>();
-        list = personJDBCRepository.findAll();
-        nama += " ######### JDBC BIASA############ ";
-        for (Person domain: list ){
-            nama += ++counter+ ". " + domain.getName() + " (" + domain.getAddress() + ") => ";
+        // list = new ArrayList<>();
+        // list = personJDBCRepository.findAll();
+        // nama += " ######### JDBC BIASA############ ";
+        // for (Person domain: list ){
+        //     nama += ++counter+ ". " + domain.getName() + " (" + domain.getAddress() + ") => ";
            
-            // for (Todo detilItem: domain.getTodos()) {
-            //     todos += ++counterTodo+ ". " + detilItem.getDescription() + "\t"; 
-            //     System.out.println(detilItem.getDescription());
-            // }
-        }
+        //     // for (Todo detilItem: domain.getTodos()) {
+        //     //     todos += ++counterTodo+ ". " + detilItem.getDescription() + "\t"; 
+        //     //     System.out.println(detilItem.getDescription());
+        //     // }
+        // }
 
-        list = new ArrayList<>();
-        list = personJPARepository.findAllActivePerson();
-        nama += " ######### Active Person JPQL ############ ";
-        for (Person domain: list ){
-            nama += ++counter+ ". " + domain.getName() + " (" + domain.getAddress() + ") => ";
+        // list = new ArrayList<>();
+        // list = personJPARepository.findAllActivePerson();
+        // nama += " ######### Active Person JPQL ############ ";
+        // for (Person domain: list ){
+        //     nama += ++counter+ ". " + domain.getName() + " (" + domain.getAddress() + ") => ";
            
-            for (Todo detilItem: domain.getTodos()) {
-                todos += ++counterTodo+ ". " + detilItem.getDescription() + "\t"; 
-                System.out.println(detilItem.getDescription());
-            }
-        }
+        //     for (Todo detilItem: domain.getTodos()) {
+        //         todos += ++counterTodo+ ". " + detilItem.getDescription() + "\t"; 
+        //         System.out.println(detilItem.getDescription());
+        //     }
+        // }
 
-        list = new ArrayList<>();
-        list = personJPARepository.findAllActivePersonNative();
-        nama += " ######### Active Person Native ############ ";
-        for (Person domain: list ){
-            nama += ++counter+ ". " + domain.getName() + " (" + domain.getAddress() + ") => ";
+        // list = new ArrayList<>();
+        // list = personJPARepository.findAllActivePersonNative();
+        // nama += " ######### Active Person Native ############ ";
+        // for (Person domain: list ){
+        //     nama += ++counter+ ". " + domain.getName() + " (" + domain.getAddress() + ") => ";
            
-            for (Todo detilItem: domain.getTodos()) {
-                todos += ++counterTodo+ ". " + detilItem.getDescription() + "\t"; 
-                System.out.println(detilItem.getDescription());
-            }
-        }
+        //     for (Todo detilItem: domain.getTodos()) {
+        //         todos += ++counterTodo+ ". " + detilItem.getDescription() + "\t"; 
+        //         System.out.println(detilItem.getDescription());
+        //     }
+        // }
 
-        list = new ArrayList<>();
-        list.add(personJPARepository.findUserByNameAndAddress("%B%", "%") );
-        for (Person domain: list ){
-            nama += ++counter+ ". " + domain.getName() + " (" + domain.getAddress() + ") => ";
+        // list = new ArrayList<>();
+        // list.add(personJPARepository.findUserByNameAndAddress("%B%", "%") );
+        // for (Person domain: list ){
+        //     nama += ++counter+ ". " + domain.getName() + " (" + domain.getAddress() + ") => ";
            
-            for (Todo detilItem: domain.getTodos()) {
-                todos += ++counterTodo+ ". " + detilItem.getDescription() + "\t"; 
-                System.out.println(detilItem.getDescription());
-            }
-        }
+        //     for (Todo detilItem: domain.getTodos()) {
+        //         todos += ++counterTodo+ ". " + detilItem.getDescription() + "\t"; 
+        //         System.out.println(detilItem.getDescription());
+        //     }
+        // }
 
-        list = new ArrayList<>();
-        list.add(personJPARepository.findUserByNameAndAddress_NamedParam("%Ty%", "%") );
-        for (Person domain: list ){
-            nama += ++counter+ ". " + domain.getName() + " (" + domain.getAddress() + ") => ";
+        // list = new ArrayList<>();
+        // list.add(personJPARepository.findUserByNameAndAddress_NamedParam("%Ty%", "%") );
+        // for (Person domain: list ){
+        //     nama += ++counter+ ". " + domain.getName() + " (" + domain.getAddress() + ") => ";
            
-            for (Todo detilItem: domain.getTodos()) {
-                todos += ++counterTodo+ ". " + detilItem.getDescription() + "\t"; 
-                System.out.println(detilItem.getDescription());
-            }
-        }
+        //     for (Todo detilItem: domain.getTodos()) {
+        //         todos += ++counterTodo+ ". " + detilItem.getDescription() + "\t"; 
+        //         System.out.println(detilItem.getDescription());
+        //     }
+        // }
 
         uiModel.addAttribute("name", nama);
         uiModel.addAttribute("todos", todos); 

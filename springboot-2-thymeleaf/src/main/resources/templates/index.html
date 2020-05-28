@@ -2,31 +2,32 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <html>
+
 <head>
     <title>Getting Started: Serving Web Content</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    
+
     <!-- <link href="../static/css/main.css" rel="stylesheet"  th:href="@{~/css/main.css}" /> -->
-    <link  rel="stylesheet" th:href="@{~/css/main.css}" />
+    <link rel="stylesheet" th:href="@{~/css/main.css}" />
     <script th:src="@{~/js/form-validation.js}"></script>
 
     <!-- Bootstrap core CSS -->
 
-   <!-- <script th:src="@{/webjars/bootstrap/4.4.1-1/js/bootstrap.min.js}"></script> -->
-   <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
-   <!-- <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.4.1-1/css/bootstrap.min.css} "/> -->
-   <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css} "/>
-   <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap-responsive.css} "/>
+    <!-- <script th:src="@{/webjars/bootstrap/4.4.1-1/js/bootstrap.min.js}"></script> -->
+    <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+    <!-- <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.4.1-1/css/bootstrap.min.css} "/> -->
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css} " />
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap-responsive.css} " />
 
-   <link th:rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.css} "/>
+    <link th:rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.css} " />
 
 
     <!-- <link rel=”stylesheet” href=”https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css”> -->
 
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
-    
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
-    
+
     <!-- <script >
       $(document).ready(function(){
         //  $("#registration").submit(function(){
@@ -36,7 +37,7 @@
       });
     </script> -->
 
- 
+
 
 </head>
 
@@ -44,40 +45,42 @@
     <!-- <H1>ROOT Page</H1>
     <p>Go To homePage <a href="/homePage">here</a></p>
     <p>Jika tidak ada @RequestMapping("/") atau @GetMapping("/") maka index.html ini, akan otomatis dijalankan</p> -->
-     
-   <!-- <div class="container justify-content-center align-items-center"> -->
+
+    <!-- <div class="container justify-content-center align-items-center"> -->
     <div class="continer row h-100 justify-content-center align-items-center">
-      <div class="jumbotron shadow-sm" style="width: 50em; background-color:rgb(124, 104, 177)">
-          <h1 class="display-4">PAGE ADMIN</h1>
-          <p class="lead">This is the home page of our web application. Anyone can access it, even if they have not signed in.</p>
-          <hr class="my-4">
-          <p>Using this example, you will become more familiar with Spring Security concepts:)</p>
-          <p class="lead">
-              <a class="btn btn-primary btn-lg" href="https://spring.io/projects/spring-security" role="button">Learn more about Spring Security</a>
-          </p>
-      </div>
+        <div class="jumbotron shadow-sm" style="width: 50em; background-color:rgb(124, 104, 177)">
+            <h1 class="display-4">PAGE ADMIN oke tidak oke </h1>
+            <h1 class="display-4">PAGE ADMIN oke tidak masalah</h1>
+            <p class="lead">This is theon. Anyone can access it, even if they have not signed in.</p>
+            <hr class="my-4">
+            <p>Using this example, you will become more familiar with Spring Security concepts:)</p>
+            <p class="lead">
+                <a class="btn btn-primary btn-lg" href="https://spring.io/projects/spring-security" role="button">Learn more about Spring Security</a>
+            </p>
+        </div>
     </div>
 
     <div class="container">
-      <h2>Registration</h2>
-      <form action="" name="registration" id="registration">
-    
-        <label for="firstname">First Name</label>
-        <input type="text" name="firstname" id="firstname" placeholder="John"/>
-    
-        <label for="lastname">Last Name</label>
-        <input type="text" name="lastname" id="lastname" placeholder="Doe"/>
-    
-        <label for="email">Email</label>
-        <input type="email" name="email" id="email" placeholder="john@doe.com"/>
-    
-        <label for="password">Password</label>
-        <input type="password" name="password" id="password" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;"/>
-    
-        <button type="submit">Register</button>
-    
-      </form>
+        <h2>Registration</h2>
+        <form action="" name="registration" id="registration">
+
+            <label for="firstname">First Name</label>
+            <input type="text" name="firstname" id="firstname" placeholder="John" />
+
+            <label for="lastname">Last Name</label>
+            <input type="text" name="lastname" id="lastname" placeholder="Doe" />
+
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" placeholder="john@doe.com" />
+
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;" />
+
+            <button type="submit">Register</button>
+
+        </form>
     </div>
 
 </body>
+
 </html>
