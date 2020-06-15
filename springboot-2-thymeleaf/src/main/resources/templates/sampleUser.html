@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Spring Boot Thymeleaf Application - Form Samples - Checkboxes</title>
+</head>
+
+<body>
+
+    <form th:action="@{/sampleUser}" method="post">
+
+        <!-- <div>
+            <label>Select one color:</label>
+            <select th:field="*{color}">
+            <option th:each="color : ${allSampleColors}"
+                    th:value="${color}"
+                    th:text="${color}">RED
+            </option>
+            </select>
+        </div> -->
+
+        <!-- <div th:object="${fuser}">
+            <label>Select Role String:</label>
+            <select th:field="*{fuserRoles}" multiple style="height: 120px;">
+                <option th:each="role : ${allSampleColors}"
+                        th:value="${role}"
+                        th:text="${role}">RED
+                </option>
+            </select>
+        </div>
+
+        <br>
+        <div th:object="${fuser}">
+            <label>Select Role String:</label>
+            <select th:field="*{fuserRoles}" multiple style="height: 120px;">
+                <option th:each="role : ${listSampleColors}"
+                        th:value="${role}"
+                        th:text="${role}">RED
+                </option>
+            </select>
+        </div>
+        <br> -->
+
+        <div th:object="${fuser}">
+            <label>Select Role String:</label>
+            <select th:field="*{enumRoles}" multiple style="height: 120px;">
+                <option th:each="role : ${allEnumRoles}"
+                        th:value="${role}"
+                        th:text="${role}">RED
+                </option>
+            </select>
+        </div>
+
+
+        <input type="submit" value="Submit" />
+    </form>
+
+    <label th:text="${message}" />
+
+</body>
+
+</html>

@@ -103,7 +103,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
              * 
              * Khusus untuk vaadin .csrf harus di dsable
              */
-            .csrf().disable()
+            // .csrf().disable()
+            .httpBasic()
+            .and()
 
 			.authorizeRequests()
                 // .antMatchers( "/**" ).permitAll() // Untuk pMelakukan Permit kepada semua dan tidak perlu otorisasi: Mengacu pada contoh diatas

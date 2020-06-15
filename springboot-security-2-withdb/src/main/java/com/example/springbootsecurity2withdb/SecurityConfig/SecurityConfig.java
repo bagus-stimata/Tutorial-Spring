@@ -1,5 +1,6 @@
 package com.example.springbootsecurity2withdb.SecurityConfig;
 
+import org.apache.tomcat.util.http.parser.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,6 +14,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer;
 
 @Configuration
 @EnableWebSecurity
@@ -111,7 +113,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
              * 
              * Khusus untuk vaadin .csrf harus di dsable
              */
-            .csrf().disable()
+            // .csrf().disable()
+            .httpBasic()
+            .and()
 
 			.authorizeRequests()
                 // .antMatchers( "/**" ).permitAll() // Untuk pMelakukan Permit kepada semua dan tidak perlu otorisasi: Mengacu pada contoh diatas
@@ -214,5 +218,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
     // }
 
  
+   
   
 }

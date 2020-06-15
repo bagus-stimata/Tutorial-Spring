@@ -2,9 +2,11 @@ package com.example.springbootdata4jpaext;
 
 
 import com.example.springbootdata4jpaext.bar.repo.BarRepository;
+import com.example.springbootdata4jpaext.foo.domain.Foo;
 import com.example.springbootdata4jpaext.foo.repo.FooRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,13 +19,13 @@ public class FooBarController {
   private final BarRepository barRepo;
 
   @Autowired
-  FooBarController(FooRepository fooRepo, BarRepository barRepo) {
+  FooBarController(final FooRepository fooRepo, final BarRepository barRepo) {
     this.fooRepo = fooRepo;
     this.barRepo = barRepo;
   }
 
   @RequestMapping("/foobar/{id}")
-  public String fooBar(@PathVariable("id") Long id) {
+  public String fooBar(@PathVariable("id") final Long id) {
     System.out.println("Oke dipanggil #### ##############");
     fooRepo.findAll();
     // Foo foo = fooRepo.findById(id)
@@ -33,4 +35,5 @@ public class FooBarController {
     return null;
   }
 
+  
 }

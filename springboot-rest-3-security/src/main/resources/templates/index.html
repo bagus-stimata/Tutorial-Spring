@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<!-- <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"> -->
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Login Form</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" th:href="@{~/css/main.css}" />
+</head>
+
+<body>
+    <h1>HOME</h1>
+
+    <div th:if="${param.logout}">
+        <label>
+                You have been logged out.
+            </label>
+    </div>
+
+    <div sec:authorize="isAuthenticated()">
+        <a href="javascript: document.logoutForm.submit()" role="menuitem"> Logout</a>
+        <form name="logoutForm" th:action="@{/logout}" method="POST" th:hidden="true">
+            <input hidden type="submit" value="Sign Out" />
+        </form>
+        <div>
+            <a class="btn btn-success" th:href="@{/employee}">Employee Rest</a><br>
+        </div>
+    </div>
+
+
+    <div sec:authorize="isAuthenticated() != true">
+
+        <a href="javascript: document.logoutForm.submit()" role="menuitem"> Login (More Bad)</a>
+
+        <form name="logoutForm" th:action="@{/login}" method="POST" th:hidden="true">
+            ikuti link <input hidden type="submit" value="Log In" />
+        </form>
+    </div>
+
+    <div sec:authorize="isAnonymous()">
+        <a class="btn btn-success" th:href="@{/login}">Login Other Way (More Efective)</a><br>
+        <a class="btn btn-primary" th:href="@{/register}">Register Other Way (pembahasan berikutnya)</a>
+    </div>
+
+
+
+</body>
+
+</html>

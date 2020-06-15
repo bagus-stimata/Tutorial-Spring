@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+<!-- <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"> -->
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Login Form</title>
+
+
+</head>
+</head>
+
+<body>
+
+    <form th:action="@{/login}" method="POST">
+        <div class="container justify-content-center align-items-center" style="max-width: 400px;">
+            <!-- <div class="continer row h-100 justify-content-center align-items-center"> -->
+            <div class="jumbotron jumbotron-fluid shadow-lg">
+                <div class="container">
+                    <div th:if="${param.error}">
+                        <label style="color:red">Invalid username and password.</label>
+                    </div>
+
+                    <div th:if="${param.logout}">
+                        <label style="color:blue; font-size: large;">
+                        You have been logged out.
+                    </label>
+                    </div>
+
+                    <table class="table">
+                        <tr>
+                            <td><label> User Name  </label></td>
+                            <td> <input type="text" name="username" /></td>
+                        </tr>
+                        <tr>
+                            <td><label> Password </label></td>
+                            <td><input type="password" name="password" /></td>
+                        </tr>
+                    </table>
+                    <hr class="my-2">
+                    <p><button type="submit" name="" id="" class="btn btn-primary">Sign In</button></p>
+                    <p><a th:href="@{/login}">Refresh this page</a></p>
+                </div>
+            </div>
+    </form>
+
+
+
+
+
+
+    </div>
+
+</body>
+
+</html>

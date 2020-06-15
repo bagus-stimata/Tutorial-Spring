@@ -38,7 +38,10 @@ public class BasicConfiguration extends WebSecurityConfigurerAdapter {
              * 
              * Khusus untuk vaadin .csrf harus di dsable
              */
-            .csrf().disable()
+            // .csrf().disable()
+            //If you are using rest try to use this
+            .httpBasic()
+            .and()
 
 			.authorizeRequests()
                 // .antMatchers( "/**" ).permitAll() // Untuk pMelakukan Permit kepada semua dan tidak perlu otorisasi: Mengacu pada contoh diatas
@@ -48,6 +51,7 @@ public class BasicConfiguration extends WebSecurityConfigurerAdapter {
                     "/js/**",
                     "/css/**",
                     "/img/**",
+                    // "/employee",
                     "/webjars/**", "/registration").permitAll()
 
                 /**
