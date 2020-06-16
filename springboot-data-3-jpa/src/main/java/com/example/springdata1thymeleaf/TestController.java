@@ -13,6 +13,7 @@ import com.example.springdata1thymeleaf.model.Aktifitas;
 import com.example.springdata1thymeleaf.model.Message;
 import com.example.springdata1thymeleaf.model.Person;
 import com.example.springdata1thymeleaf.model.Todo;
+import com.fasterxml.jackson.core.JsonProcessingException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,29 +31,29 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-public class MessageController {
+public class TestController {
     
     private static final Logger logger = LoggerFactory.getLogger(MainRestController.class);
 
-    List<Message> list = new ArrayList<>(Arrays.asList(
-        new Message(1, "Singkat", "Bagus"),
-        new Message(2, "Surat", "Oke bos")
+    List<Person> list = new ArrayList<>(Arrays.asList(
+        new Person(1, "Bagus", "Wangkal"),
+        new Person(2, "Anis", "Kuwik")
     ));
 
-    @RequestMapping(value = "/getmessage/{id}", produces = MediaType.APPLICATION_XML_VALUE )
-    public Message getPerson(@PathVariable("id") int id){
-        return list.get(0); 
-    }    
+    // @RequestMapping(value = "/getperson/{id}", produces = {MediaType.APPLICATION_JSON_VALUE} )
+    // public Message getPerson(@PathVariable("id") int id){
+    //     return 
+    // }    
 
 
-    @RequestMapping(value = "/getallmessage", produces = {MediaType.APPLICATION_XML_VALUE} )
-    public List<Message> getAllMessage(){
+    @RequestMapping(value = "/getalltest", produces = {MediaType.APPLICATION_JSON_VALUE} )
+    public List<Person> getAllMessage(){
         return list;
     }
 
-    @PostMapping(value = "/createmessage", consumes = MediaType.APPLICATION_XML_VALUE)
-    public void createPerson(@RequestBody Message message){
-        list.add(message);
+    @PostMapping(value = "/createtest", consumes = "application/json", produces = "application/json")
+    public void createPerson(@RequestBody Person person) throws JsonProcessingException {
+        list.add(person);
     }    
 
       

@@ -6,7 +6,6 @@ import java.util.List;
 import com.example.springdata1thymeleaf.jpa_repository.PersonJPARepository;
 import com.example.springdata1thymeleaf.model.Person;
 import com.example.springdata1thymeleaf.model.Todo;
-import com.example.springdata1thymeleaf.repository.PersonJDBCRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,9 +18,6 @@ public class GreetingController {
 
     @Autowired
     private PersonJPARepository personJPARepository;
-
-    @Autowired
-    private PersonJDBCRepository personJDBCRepository;
 
     @GetMapping("/greeting_view")
 	public String greeting(@RequestParam(name="name", required=false, defaultValue="Mas Kirun") String name, Model uiModel) {
@@ -37,10 +33,10 @@ public class GreetingController {
         for (Person domain: list ){
             nama += ++counter+ ". " + domain.getName() + " (" + domain.getAddress() + ") => ";
            
-            for (Todo detilItem: domain.getTodos()) {
-                todos += ++counterTodo+ ". " + detilItem.getDescription() + "\t"; 
-                System.out.println(detilItem.getDescription());
-            }
+            // for (Todo detilItem: domain.getTodos()) {
+            //     todos += ++counterTodo+ ". " + detilItem.getDescription() + "\t"; 
+            //     System.out.println(detilItem.getDescription());
+            // }
         }
         // list = new ArrayList<>();
         // list.add(personJPARepository.findByID(2));

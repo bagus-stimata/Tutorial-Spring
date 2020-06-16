@@ -13,6 +13,7 @@ import com.example.springdata1thymeleaf.model.Aktifitas;
 import com.example.springdata1thymeleaf.model.Message;
 import com.example.springdata1thymeleaf.model.Person;
 import com.example.springdata1thymeleaf.model.Todo;
+import com.fasterxml.jackson.core.JsonProcessingException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,29 +31,35 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-public class MessageController {
+public class PersonController {
     
-    private static final Logger logger = LoggerFactory.getLogger(MainRestController.class);
+    private static final Logger logger = LoggerFactory.getLogger(PersonController.class);
 
-    List<Message> list = new ArrayList<>(Arrays.asList(
-        new Message(1, "Singkat", "Bagus"),
-        new Message(2, "Surat", "Oke bos")
+    @Autowired
+    PersonJPARepository personJPARepository;
+
+    List<Person> list = new ArrayList<>(Arrays.asList(
+        new Person(1, "Aktifitas 1", null),
+        new Person(2, "Aktifitas 2", null)
     ));
 
-    @RequestMapping(value = "/getmessage/{id}", produces = MediaType.APPLICATION_XML_VALUE )
-    public Message getPerson(@PathVariable("id") int id){
-        return list.get(0); 
+    @RequestMapping(value = "/getperson/{id}", produces = {MediaType.APPLICATION_XML_VALUE} )
+    public Person getAktifitas(@PathVariable("id") int id){
+        // return list.get(0); 
+        return personJPARepository.findAll().get(0);
     }    
 
 
-    @RequestMapping(value = "/getallmessage", produces = {MediaType.APPLICATION_XML_VALUE} )
-    public List<Message> getAllMessage(){
-        return list;
+    @RequestMapping(value = "/getallperson", produces = {MediaType.APPLICATION_XML_VALUE} )
+    public List<Person> getAllMessage(){
+        // return list;
+        return personJPARepository.findAll();
     }
 
-    @PostMapping(value = "/createmessage", consumes = MediaType.APPLICATION_XML_VALUE)
-    public void createPerson(@RequestBody Message message){
-        list.add(message);
+    @RequestMapping(value = "/createperson", method = RequestMethod.POST,  consumes = MediaType.APPLICATION_XML_VALUE)
+    public void createAktifitas(@RequestBody Person person) {
+        // list.add(aktifitas);
+        personJPARepository.save(person);
     }    
 
       

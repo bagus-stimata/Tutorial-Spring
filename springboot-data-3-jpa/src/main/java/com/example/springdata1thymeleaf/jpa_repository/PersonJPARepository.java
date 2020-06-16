@@ -19,15 +19,15 @@ public interface PersonJPARepository extends JpaRepository<Person, Integer>{
     */
 
     //Automatic Query: This Is Powerful tapi harus Match Exact
-    Person findByID(Integer ID);
+    Person findById(int id);
     List<Person> findByName(String name);
 
-    @Query("SELECT u FROM Person u WHERE u.ID = 2")
+    @Query("SELECT u FROM Person u WHERE u.id = 2")
     List<Person> findAllActivePerson();
 
     //Native Query tidak Case Sensitif tabel
     @Query(
-        value = "SELECT * FROM Person u WHERE u.iD = 1", 
+        value = "SELECT * FROM Person u WHERE u.id = 1", 
         nativeQuery = true)
       List<Person> findAllActivePersonNative();
       
@@ -39,7 +39,7 @@ public interface PersonJPARepository extends JpaRepository<Person, Integer>{
       Person findUserByNameAndAddress_NamedParam(@Param("name_") String name_, @Param("alamat") String alamat);
 
         @Modifying
-        @Query( value = "INSERT INTO Person (ID, name, address) values (:ID_, :name_, :address_ )",
+        @Query( value = "INSERT INTO Person (id, name, address) values (:id_, :name_, :address_ )",
         nativeQuery = true)
-        void insertUser(@Param("ID_") Integer ID_, @Param("name_") String name_, @Param("address_") String status_ );
+        void insertUser(@Param("id_") Integer id_, @Param("name_") String name_, @Param("address_") String status_ );
 }

@@ -4,10 +4,13 @@ package com.example.springdata1thymeleaf.model;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
+
 /**
  * @author Roy Clarkson
  */
 
+@JacksonXmlRootElement
 public class Message {
 
 	private long id;
