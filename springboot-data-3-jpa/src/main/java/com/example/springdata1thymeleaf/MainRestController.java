@@ -42,21 +42,21 @@ public class MainRestController {
 
  
 
-    @RequestMapping(value = "/getperson/{id}", produces = {MediaType.APPLICATION_JSON_VALUE} )
-    public Person getPerson(@PathVariable("id") int id){
-        return personJPARepository.findByID(id);
-    }    
-    @RequestMapping(value = "/getallperson", produces = {MediaType.APPLICATION_JSON_VALUE} )
-    public List<Person> getAllPerson(){
-        return personJPARepository.findAll();
-    }
+    // @RequestMapping(value = "/getperson/{id}", produces = {MediaType.APPLICATION_JSON_VALUE} )
+    // public Person getPerson(@PathVariable("id") int id){
+    //     return personJPARepository.findById(id);
+    // }    
+    // @RequestMapping(value = "/getallperson", produces = {MediaType.APPLICATION_JSON_VALUE} )
+    // public List<Person> getAllPerson(){
+    //     return personJPARepository.findAll();
+    // }
 
-    @PostMapping(value = "/createperson", consumes = "application/json", produces = "application/json")
-    public Person createPerson(@RequestBody Person person){
+    // @PostMapping(value = "/createperson", consumes = "application/json", produces = "application/json")
+    // public Person createPerson(@RequestBody Person person){
        
-        logger.debug("Hello ini dipanggil");
-        return personJPARepository.save(person);
-    }    
+    //     logger.debug("Hello ini dipanggil");
+    //     return personJPARepository.save(person);
+    // }    
 
     // @PostMapping(value = "/createperson", consumes = "application/json", produces = "application/json")
     // public Person createPerson(){
@@ -65,27 +65,27 @@ public class MainRestController {
     //     return personJPARepository.save(person);
     // }    
 
-    @RequestMapping(value = "/updateperson", method = RequestMethod.PUT )
-    public String updatePerson(@RequestParam Integer id, Person person){
-        personJPARepository.save(person);
-        return "redirect:/";
-    }    
-    @RequestMapping(value = "/deleteperson", method = RequestMethod.DELETE )
-    public String updatePerson(@RequestParam Integer id){
-        personJPARepository.deleteById(id);
-        return "redirect:/";
-    }    
+    // @RequestMapping(value = "/updateperson", method = RequestMethod.PUT )
+    // public String updatePerson(@RequestParam Integer id, Person person){
+    //     personJPARepository.save(person);
+    //     return "redirect:/";
+    // }    
+    // @RequestMapping(value = "/deleteperson", method = RequestMethod.DELETE )
+    // public String updatePerson(@RequestParam Integer id){
+    //     personJPARepository.deleteById(id);
+    //     return "redirect:/";
+    // }    
     
 
-    @RequestMapping(value = "/gettodo", produces = {MediaType.APPLICATION_JSON_VALUE} )
-    public Todo getTodo(){
-        return todoJPARepository.findAll().get(0);
-    }    
+    // @RequestMapping(value = "/gettodo", produces = {MediaType.APPLICATION_JSON_VALUE} )
+    // public Todo getTodo(){
+    //     return todoJPARepository.findAll().get(0);
+    // }    
 
-    @RequestMapping(value = "/getaktifitas", produces = {MediaType.APPLICATION_JSON_VALUE} )
-    public Aktifitas getAktifitas(){
-        return aktifitasJPARepository.findAll().get(0);
-    }    
+    // @RequestMapping(value = "/getaktifitas", produces = {MediaType.APPLICATION_JSON_VALUE} )
+    // public Aktifitas getAktifitas(){
+    //     return aktifitasJPARepository.findAll().get(0);
+    // }    
 
 
 }

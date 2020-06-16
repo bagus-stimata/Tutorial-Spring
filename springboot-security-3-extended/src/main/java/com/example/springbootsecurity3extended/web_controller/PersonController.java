@@ -1,4 +1,4 @@
-package com.example.springdata1thymeleaf;
+package com.example.springbootsecurity3extended.web_controller;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -6,13 +6,13 @@ import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 
 
-import com.example.springdata1thymeleaf.jpa_repository.AktifitasJPARepository;
-import com.example.springdata1thymeleaf.jpa_repository.PersonJPARepository;
-import com.example.springdata1thymeleaf.jpa_repository.TodoJPARepository;
-import com.example.springdata1thymeleaf.model.Aktifitas;
-import com.example.springdata1thymeleaf.model.Message;
-import com.example.springdata1thymeleaf.model.Person;
-import com.example.springdata1thymeleaf.model.Todo;
+import com.example.springbootsecurity3extended.jpa_repository.AktifitasJPARepository;
+import com.example.springbootsecurity3extended.jpa_repository.PersonJPARepository;
+import com.example.springbootsecurity3extended.jpa_repository.TodoJPARepository;
+import com.example.springbootsecurity3extended.model.Aktifitas;
+import com.example.springbootsecurity3extended.model.Message;
+import com.example.springbootsecurity3extended.model.Person;
+import com.example.springbootsecurity3extended.model.Todo;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 import org.slf4j.Logger;
@@ -31,35 +31,35 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-public class AktifitasController {
+public class PersonController {
     
-    private static final Logger logger = LoggerFactory.getLogger(AktifitasController.class);
+    private static final Logger logger = LoggerFactory.getLogger(PersonController.class);
 
     @Autowired
-    AktifitasJPARepository aktifitasJPARepository;
+    PersonJPARepository personJPARepository;
 
-    List<Aktifitas> list = new ArrayList<>(Arrays.asList(
-        new Aktifitas(1, "Aktifitas 1", null),
-        new Aktifitas(2, "Aktifitas 2", null)
+    List<Person> list = new ArrayList<>(Arrays.asList(
+        new Person(1, "Aktifitas 1", null),
+        new Person(2, "Aktifitas 2", null)
     ));
 
-    @RequestMapping(value = "/getaktifitas/{id}", produces = {MediaType.APPLICATION_JSON_VALUE} )
-    public Aktifitas getAktifitas(@PathVariable("id") int id){
+    @RequestMapping(value = "/getperson/{id}", produces = {MediaType.APPLICATION_XML_VALUE} )
+    public Person getAktifitas(@PathVariable("id") int id){
         // return list.get(0); 
-        return aktifitasJPARepository.findAll().get(0);
+        return personJPARepository.findAll().get(0);
     }    
 
 
-    @RequestMapping(value = "/getallaktifitas", produces = {MediaType.APPLICATION_JSON_VALUE} )
-    public List<Aktifitas> getAllMessage(){
+    @RequestMapping(value = "/getallperson", produces = {MediaType.APPLICATION_XML_VALUE} )
+    public List<Person> getAllMessage(){
         // return list;
-        return aktifitasJPARepository.findAll();
+        return personJPARepository.findAll();
     }
 
-    @RequestMapping(value = "/createaktifitas", method = RequestMethod.POST,  consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void createAktifitas(@RequestBody Aktifitas aktifitas) {
+    @RequestMapping(value = "/createperson", method = RequestMethod.POST,  consumes = MediaType.APPLICATION_XML_VALUE)
+    public void createAktifitas(@RequestBody Person person) {
         // list.add(aktifitas);
-        aktifitasJPARepository.save(aktifitas);
+        personJPARepository.save(person);
     }    
 
       

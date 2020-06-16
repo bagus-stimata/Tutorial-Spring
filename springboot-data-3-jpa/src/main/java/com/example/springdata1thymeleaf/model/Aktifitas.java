@@ -19,7 +19,6 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
 @JacksonXmlRootElement
-// @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id", scope = Integer.class)
 @Entity
 @Table(name = "aktifitas")
 public class Aktifitas {
@@ -30,9 +29,8 @@ public class Aktifitas {
 
     private String description = "";
 
-    // @JsonIgnore
-    // @JsonBackReference
-    @JsonManagedReference
+   
+    // @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "todoBean", referencedColumnName = "ID")
     private Todo todoBean;

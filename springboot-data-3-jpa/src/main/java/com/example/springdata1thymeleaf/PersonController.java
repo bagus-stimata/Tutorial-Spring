@@ -43,20 +43,20 @@ public class PersonController {
         new Person(2, "Aktifitas 2", null)
     ));
 
-    @RequestMapping(value = "/getperson/{id}", produces = {MediaType.APPLICATION_XML_VALUE} )
+    @RequestMapping(value = "/getperson/{id}", produces = {MediaType.APPLICATION_JSON_VALUE} )
     public Person getAktifitas(@PathVariable("id") int id){
         // return list.get(0); 
         return personJPARepository.findAll().get(0);
     }    
 
 
-    @RequestMapping(value = "/getallperson", produces = {MediaType.APPLICATION_XML_VALUE} )
+    @RequestMapping(value = "/getallperson", produces = {MediaType.APPLICATION_JSON_VALUE} )
     public List<Person> getAllMessage(){
         // return list;
         return personJPARepository.findAll();
     }
 
-    @RequestMapping(value = "/createperson", method = RequestMethod.POST,  consumes = MediaType.APPLICATION_XML_VALUE)
+    @RequestMapping(value = "/createperson", method = RequestMethod.POST,  consumes = MediaType.APPLICATION_JSON_VALUE)
     public void createAktifitas(@RequestBody Person person) {
         // list.add(aktifitas);
         personJPARepository.save(person);

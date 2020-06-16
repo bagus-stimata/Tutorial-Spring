@@ -18,7 +18,6 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
 @JacksonXmlRootElement
-// @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id", scope = Integer.class)
 @Entity
 @Table(name = "person")
 public class Person {
@@ -30,8 +29,7 @@ public class Person {
     private String address = "";
 
     
-    // @JsonIgnore
-    // @JsonBackReference
+    @JsonBackReference //Tidak diberi juga bisa
     @OneToMany(mappedBy = "personBean", cascade=CascadeType.ALL)
     private List<Todo> todos;
     

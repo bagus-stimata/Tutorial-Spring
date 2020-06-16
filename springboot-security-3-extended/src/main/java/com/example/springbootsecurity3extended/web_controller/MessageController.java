@@ -1,8 +1,10 @@
 package com.example.springbootsecurity3extended.web_controller;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
-import javax.validation.Valid;
+
 
 import com.example.springbootsecurity3extended.jpa_repository.AktifitasJPARepository;
 import com.example.springbootsecurity3extended.jpa_repository.PersonJPARepository;
@@ -28,53 +30,45 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-public class MainRestController {
+public class MessageController {
     
     private static final Logger logger = LoggerFactory.getLogger(MainRestController.class);
 
-    @Autowired
-    PersonJPARepository personJPARepository;
+    List<Message> list = new ArrayList<>(Arrays.asList(
+        new Message(1, "Singkat", "Bagus"),
+        new Message(2, "Surat", "Oke bos")
+    ));
 
-    @Autowired
-    TodoJPARepository todoJPARepository;
-    @Autowired
-    AktifitasJPARepository aktifitasJPARepository;
+    @RequestMapping(value = "/getmessage/{id}", produces = MediaType.APPLICATION_XML_VALUE )
+    public Message getPerson(@PathVariable("id") int id){
+        return list.get(0); 
+    }    
 
 
-   
+    @RequestMapping(value = "/getallmessage", produces = {MediaType.APPLICATION_XML_VALUE} )
+    public List<Message> getAllMessage(){
+        return list;
+    }
 
+    @PostMapping(value = "/createmessage", consumes = MediaType.APPLICATION_XML_VALUE)
+    public void createPerson(@RequestBody Message message){
+        list.add(message);
+    }    
 
- 
+      
 
-    // @RequestMapping(value = "/createperson", method = RequestMethod.POST)
-    // public String createPerson(){
-    //     // personJPARepository.save(person);
-    //     logger.debug("Hello ini dipanggil");
-    //     // return new Person();
+    // @RequestMapping(value = "/updateperson", method = RequestMethod.PUT )
+    // public String updatePerson(@RequestParam Integer id, Person person){
+    //     personJPARepository.save(person);
     //     return "redirect:/";
     // }    
-
-    @RequestMapping(value = "/updateperson", method = RequestMethod.PUT )
-    public String updatePerson(@RequestParam Integer id, Person person){
-        personJPARepository.save(person);
-        return "redirect:/";
-    }    
-    @RequestMapping(value = "/deleteperson", method = RequestMethod.DELETE )
-    public String updatePerson(@RequestParam Integer id){
-        personJPARepository.deleteById(id);
-        return "redirect:/";
-    }    
+    // @RequestMapping(value = "/deleteperson", method = RequestMethod.DELETE )
+    // public String updatePerson(@RequestParam Integer id){
+    //     personJPARepository.deleteById(id);
+    //     return "redirect:/";
+    // }    
     
 
-    @RequestMapping(value = "/gettodo", produces = {MediaType.APPLICATION_JSON_VALUE} )
-    public Todo getTodo(){
-        return todoJPARepository.findAll().get(0);
-    }    
-
-    @RequestMapping(value = "/getaktifitas", produces = {MediaType.APPLICATION_JSON_VALUE} )
-    public Aktifitas getAktifitas(){
-        return aktifitasJPARepository.findAll().get(0);
-    }    
 
 
 }

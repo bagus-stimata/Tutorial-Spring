@@ -9,12 +9,16 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
+@JacksonXmlRootElement
 // @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id", scope = Integer.class)
 @Entity
 @Table(name = "aktifitas")
@@ -26,6 +30,8 @@ public class Aktifitas {
 
     private String description = "";
 
+    // @JsonIgnore
+    // @JsonBackReference
     @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "todoBean", referencedColumnName = "ID")
@@ -103,4 +109,11 @@ public class Aktifitas {
         this.todoBean = todoBean;
     }
 
+    public Aktifitas(int id, String description, Todo todoBean) {
+        this.id = id;
+        this.description = description;
+        this.todoBean = todoBean;
+    }
+    public Aktifitas() {
+    }
 }
