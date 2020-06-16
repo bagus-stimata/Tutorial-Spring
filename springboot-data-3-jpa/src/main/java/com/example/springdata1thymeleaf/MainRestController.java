@@ -1,17 +1,15 @@
-package com.example.springbootsecurity3extended.web_controller;
+package com.example.springdata1thymeleaf;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
-import javax.validation.Valid;
 
-import com.example.springbootsecurity3extended.jpa_repository.AktifitasJPARepository;
-import com.example.springbootsecurity3extended.jpa_repository.PersonJPARepository;
-import com.example.springbootsecurity3extended.jpa_repository.TodoJPARepository;
-import com.example.springbootsecurity3extended.model.Aktifitas;
-import com.example.springbootsecurity3extended.model.Employee;
-import com.example.springbootsecurity3extended.model.Message;
-import com.example.springbootsecurity3extended.model.Person;
-import com.example.springbootsecurity3extended.model.Todo;
+
+import com.example.springdata1thymeleaf.jpa_repository.AktifitasJPARepository;
+import com.example.springdata1thymeleaf.jpa_repository.PersonJPARepository;
+import com.example.springdata1thymeleaf.jpa_repository.TodoJPARepository;
+import com.example.springdata1thymeleaf.model.Aktifitas;
+import com.example.springdata1thymeleaf.model.Person;
+import com.example.springdata1thymeleaf.model.Todo;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,24 +40,7 @@ public class MainRestController {
     AktifitasJPARepository aktifitasJPARepository;
 
 
-    @RequestMapping(value = "/employee", method = RequestMethod.GET,
-    produces = { "application/json" })
-    public Employee firstPage() {
-
-        Employee emp = new Employee();
-        emp.setName("Bagus Winarno Jos Bos");
-        emp.setDesignation("manager");
-        emp.setId(1);
-        emp.setSalary(3000);
-
-        return emp;
-    }
-    @RequestMapping(value = "/getmessage", produces = "application/json")
-	public Message getMessage(){
-		return new Message(100, "Congratulations!", "You have accessed a Basic Auth protected resource.");
-	}
-
-
+ 
 
     @RequestMapping(value = "/getperson/{id}", produces = {MediaType.APPLICATION_JSON_VALUE} )
     public Person getPerson(@PathVariable("id") int id){
@@ -77,12 +58,11 @@ public class MainRestController {
         return personJPARepository.save(person);
     }    
 
-    // @RequestMapping(value = "/createperson", method = RequestMethod.POST)
-    // public String createPerson(){
-    //     // personJPARepository.save(person);
+    // @PostMapping(value = "/createperson", consumes = "application/json", produces = "application/json")
+    // public Person createPerson(){
+       
     //     logger.debug("Hello ini dipanggil");
-    //     // return new Person();
-    //     return "redirect:/";
+    //     return personJPARepository.save(person);
     // }    
 
     @RequestMapping(value = "/updateperson", method = RequestMethod.PUT )

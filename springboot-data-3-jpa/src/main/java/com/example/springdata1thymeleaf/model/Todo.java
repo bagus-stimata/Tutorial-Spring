@@ -1,6 +1,7 @@
 package com.example.springdata1thymeleaf.model;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,8 +9,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
+// @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id", scope = Integer.class)
 @Entity
 @Table(name = "todo")
 public class Todo {
@@ -19,12 +28,19 @@ public class Todo {
     private int ID = 0;
 
     private String description = "";
-    private LocalDate dateFrom;
-    private LocalDate dateTo;
+     
+    // private LocalDate dateFrom = LocalDate.now();
+    // private LocalDate dateTo = LocalDate.now();
 
+    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "personBean", referencedColumnName = "ID")
     private Person personBean;
+
+    // @JsonIgnore
+    @JsonBackReference
+    @OneToMany(mappedBy = "todoBean")
+    private List<Aktifitas> todos;
 
     public int getID() {
         return ID;
@@ -42,21 +58,21 @@ public class Todo {
         this.description = description;
     }
 
-    public LocalDate getDateFrom() {
-        return dateFrom;
-    }
+    // public LocalDate getDateFrom() {
+    //     return dateFrom;
+    // }
 
-    public void setDateFrom(LocalDate dateFrom) {
-        this.dateFrom = dateFrom;
-    }
+    // public void setDateFrom(LocalDate dateFrom) {
+    //     this.dateFrom = dateFrom;
+    // }
 
-    public LocalDate getDateTo() {
-        return dateTo;
-    }
+    // public LocalDate getDateTo() {
+    //     return dateTo;
+    // }
 
-    public void setDateTo(LocalDate dateTo) {
-        this.dateTo = dateTo;
-    }
+    // public void setDateTo(LocalDate dateTo) {
+    //     this.dateTo = dateTo;
+    // }
 
     public Person getPersonBean() {
         return personBean;
@@ -95,5 +111,20 @@ public class Todo {
 
     
 
+
+
+    /**
+     * @return List<Aktifitas> return the todos
+     */
+    public List<Aktifitas> getTodos() {
+        return todos;
+    }
+
+    /**
+     * @param todos the todos to set
+     */
+    public void setTodos(List<Aktifitas> todos) {
+        this.todos = todos;
+    }
 
 }

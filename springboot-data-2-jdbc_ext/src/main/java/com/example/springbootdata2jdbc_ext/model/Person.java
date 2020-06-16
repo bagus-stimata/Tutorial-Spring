@@ -2,16 +2,34 @@ package com.example.springbootdata2jdbc_ext.model;
 
 import java.util.List;
 
-public class Person {
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
+// @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id", scope = Integer.class)
+@Entity
+@Table(name = "person")
+public class Person {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int ID=0;
     
     private String name = "";
     private String address = "";
 
+    // @JsonIgnore
+    @JsonBackReference
+    @OneToMany(mappedBy = "personBean", cascade=CascadeType.ALL)
     private List<Todo> todos;
-    
-
     
     @Override
     public int hashCode() {
@@ -59,27 +77,26 @@ public class Person {
         this.address = address;
     }
 
-    public Person(int iD, String name, String address, List<Todo> todos) {
-        ID = iD;
-        this.name = name;
-        this.address = address;
-    }
-    public Person(){}
-
-    public List<Todo> getTodos() {
-        return todos;
-    }
-
-    public void setTodos(List<Todo> todos) {
-        this.todos = todos;
-    }
-    
     @Override
     public String toString() {
         return "Person [address=" + address + ", name=" + name + "]";
     }
 
 
-  
+    
+
+    /**
+     * @return List<Todo> return the todos
+     */
+    public List<Todo> getTodos() {
+        return todos;
+    }
+
+    /**
+     * @param todos the todos to set
+     */
+    public void setTodos(List<Todo> todos) {
+        this.todos = todos;
+    }
 
 }
