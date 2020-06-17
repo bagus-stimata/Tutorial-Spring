@@ -2,6 +2,7 @@ package com.example.springbootsecurity3extended.web_controller;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -46,7 +47,7 @@ public class AktifitasController {
     @RequestMapping(value = "/getaktifitas/{id}", produces = {MediaType.APPLICATION_JSON_VALUE} )
     public Aktifitas getAktifitas(@PathVariable("id") int id){
         // return list.get(0); 
-        return aktifitasJPARepository.findAll().get(0);
+        return aktifitasJPARepository.findById(id).get();
     }    
 
 
@@ -64,18 +65,27 @@ public class AktifitasController {
 
       
 
-    // @RequestMapping(value = "/updateperson", method = RequestMethod.PUT )
-    // public String updatePerson(@RequestParam Integer id, Person person){
-    //     personJPARepository.save(person);
-    //     return "redirect:/";
-    // }    
-    // @RequestMapping(value = "/deleteperson", method = RequestMethod.DELETE )
-    // public String updatePerson(@RequestParam Integer id){
-    //     personJPARepository.deleteById(id);
-    //     return "redirect:/";
-    // }    
-    
+    @RequestMapping(value = "/updateaktifitas/{id}", method = RequestMethod.PUT )
+    public Aktifitas updateAktifitas(@PathVariable("id") Integer id, @RequestBody Aktifitas aktifitas){
+        Aktifitas newAktifitas = aktifitasJPARepository.findById(id).orElse(new Aktifitas());
+        if ( newAktifitas != null) {
+            newAktifitas.setDescription(aktifitas.getDescription());
+            aktifitasJPARepository.save(newAktifitas);
+        }
 
+        return newAktifitas;
+    }    
+    
+    @RequestMapping(value = "/deleteaktifitas/{id}", method = RequestMethod.DELETE )
+    public Aktifitas updatePerson(@PathVariable("id") Integer id){
+        Optional<Aktifitas> newPerson = aktifitasJPARepository.findById(id);
+        if (! newPerson.isEmpty()) {
+            aktifitasJPARepository.delete(newPerson.get());
+        }
+        
+        return newPerson.orElse(new Aktifitas());
+    }    
+ 
 
 
 }

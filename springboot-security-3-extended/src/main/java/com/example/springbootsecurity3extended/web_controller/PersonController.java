@@ -63,16 +63,16 @@ public class PersonController {
         return personJPARepository.save(person);       
     }    
 
-      
-
     @RequestMapping(value = "/updateperson/{id}", method = RequestMethod.PUT )
     public Person updatePerson(@PathVariable("id") Integer id, @RequestBody Person person){
-        Optional<Person> newPerson = personJPARepository.findById(id);
-        if (! newPerson.isEmpty()) {
-            personJPARepository.save(person);
+        Person newPerson = personJPARepository.findById(id).orElse(new Person());
+        if (newPerson !=null) {
+            newPerson.setName(person.getName());
+            newPerson.setAddress(person.getAddress());
+            personJPARepository.save(newPerson);
         }
 
-        return newPerson.orElse(new Person());
+        return newPerson;
     }    
     
     @RequestMapping(value = "/deleteperson/{id}", method = RequestMethod.DELETE )
