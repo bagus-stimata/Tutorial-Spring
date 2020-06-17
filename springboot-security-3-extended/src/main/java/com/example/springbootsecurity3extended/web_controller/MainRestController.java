@@ -54,27 +54,27 @@ public class MainRestController {
     //     return "redirect:/";
     // }    
 
-    @RequestMapping(value = "/updateperson", method = RequestMethod.PUT )
-    public String updatePerson(@RequestParam Integer id, Person person){
-        personJPARepository.save(person);
-        return "redirect:/";
-    }    
-    @RequestMapping(value = "/deleteperson", method = RequestMethod.DELETE )
-    public String updatePerson(@RequestParam Integer id){
-        personJPARepository.deleteById(id);
-        return "redirect:/";
-    }    
+    // @RequestMapping(value = "/updateperson", method = RequestMethod.PUT )
+    // public String updatePerson(@RequestParam Integer id, Person person){
+    //     personJPARepository.save(person);
+    //     return "redirect:/";
+    // }    
+    // @RequestMapping(value = "/deleteperson", method = RequestMethod.DELETE )
+    // public String updatePerson(@RequestParam Integer id){
+    //     personJPARepository.deleteById(id);
+    //     return "redirect:/";
+    // }    
     
 
-    @RequestMapping(value = "/gettodo", produces = {MediaType.APPLICATION_JSON_VALUE} )
-    public Todo getTodo(){
-        return todoJPARepository.findAll().get(0);
-    }    
+    // @RequestMapping(value = "/gettodo", produces = {MediaType.APPLICATION_JSON_VALUE} )
+    // public Todo getTodo(){
+    //     return todoJPARepository.findAll().get(0);
+    // }    
 
-    @RequestMapping(value = "/getaktifitas", produces = {MediaType.APPLICATION_JSON_VALUE} )
-    public Aktifitas getAktifitas(){
-        return aktifitasJPARepository.findAll().get(0);
-    }    
+    // @RequestMapping(value = "/getaktifitas", produces = {MediaType.APPLICATION_JSON_VALUE} )
+    // public Aktifitas getAktifitas(){
+    //     return aktifitasJPARepository.findAll().get(0);
+    // }    
 
 
 }

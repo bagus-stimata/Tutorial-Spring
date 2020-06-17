@@ -1,4 +1,4 @@
-package com.example.springbootsecurity3extended.model;
+package com.example.springbootrest2basicsecurity.model;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -33,11 +33,12 @@ public class Todo {
     // private LocalDate dateFrom = LocalDate.now();
     // private LocalDate dateTo = LocalDate.now();
 
-    // @JsonManagedReference
+    // @JsonManagedReference //Tidak boleh diisi for xml
     @ManyToOne
     @JoinColumn(name = "personBean", referencedColumnName = "ID")
     private Person personBean;
 
+    
     @JsonBackReference
     @OneToMany(mappedBy = "todoBean")
     private List<Aktifitas> todos;

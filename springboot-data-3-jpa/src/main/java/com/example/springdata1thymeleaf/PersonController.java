@@ -39,8 +39,8 @@ public class PersonController {
     PersonJPARepository personJPARepository;
 
     List<Person> list = new ArrayList<>(Arrays.asList(
-        new Person(1, "Aktifitas 1", null),
-        new Person(2, "Aktifitas 2", null)
+        new Person(1, "Person 1", "Wantkal"),
+        new Person(2, "Person 2", "Tengger")
     ));
 
     @RequestMapping(value = "/getperson/{id}", produces = {MediaType.APPLICATION_JSON_VALUE} )
@@ -57,7 +57,7 @@ public class PersonController {
     }
 
     @RequestMapping(value = "/createperson", method = RequestMethod.POST,  consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void createAktifitas(@RequestBody Person person) {
+    public void createPerson(@RequestBody Person person) {
         // list.add(aktifitas);
         personJPARepository.save(person);
     }    

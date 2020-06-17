@@ -1,5 +1,7 @@
 package com.example.springbootrest2basicsecurity.main_controller;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -9,8 +11,10 @@ import com.example.springbootrest2basicsecurity.repository.AktifitasJPARepositor
 import com.example.springbootrest2basicsecurity.repository.PersonJPARepository;
 import com.example.springbootrest2basicsecurity.repository.TodoJPARepository;
 import com.example.springbootrest2basicsecurity.model.Aktifitas;
+import com.example.springbootrest2basicsecurity.model.Message;
 import com.example.springbootrest2basicsecurity.model.Person;
 import com.example.springbootrest2basicsecurity.model.Todo;
+import com.fasterxml.jackson.core.JsonProcessingException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,43 +32,38 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-public class MainRestController {
+public class AktifitasController {
     
-    private static final Logger logger = LoggerFactory.getLogger(MainRestController.class);
+    private static final Logger logger = LoggerFactory.getLogger(AktifitasController.class);
 
-    @Autowired
-    PersonJPARepository personJPARepository;
-
-    @Autowired
-    TodoJPARepository todoJPARepository;
     @Autowired
     AktifitasJPARepository aktifitasJPARepository;
 
+    List<Aktifitas> list = new ArrayList<>(Arrays.asList(
+        new Aktifitas(1, "Aktifitas 1", null),
+        new Aktifitas(2, "Aktifitas 2", null)
+    ));
 
- 
+    @RequestMapping(value = "/getaktifitas/{id}", produces = {MediaType.APPLICATION_JSON_VALUE} )
+    public Aktifitas getAktifitas(@PathVariable("id") int id){
+        // return list.get(0); 
+        return aktifitasJPARepository.findAll().get(0);
+    }    
 
-    // @RequestMapping(value = "/getperson/{id}", produces = {MediaType.APPLICATION_JSON_VALUE} )
-    // public Person getPerson(@PathVariable("id") int id){
-    //     return personJPARepository.findById(id);
-    // }    
-    // @RequestMapping(value = "/getallperson", produces = {MediaType.APPLICATION_JSON_VALUE} )
-    // public List<Person> getAllPerson(){
-    //     return personJPARepository.findAll();
-    // }
 
-    // @PostMapping(value = "/createperson", consumes = "application/json", produces = "application/json")
-    // public Person createPerson(@RequestBody Person person){
-       
-    //     logger.debug("Hello ini dipanggil");
-    //     return personJPARepository.save(person);
-    // }    
+    @RequestMapping(value = "/getallaktifitas", produces = {MediaType.APPLICATION_JSON_VALUE} )
+    public List<Aktifitas> getAllMessage(){
+        // return list;
+        return aktifitasJPARepository.findAll();
+    }
 
-    // @PostMapping(value = "/createperson", consumes = "application/json", produces = "application/json")
-    // public Person createPerson(){
-       
-    //     logger.debug("Hello ini dipanggil");
-    //     return personJPARepository.save(person);
-    // }    
+    @RequestMapping(value = "/createaktifitas", method = RequestMethod.POST,  consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void createAktifitas(@RequestBody Aktifitas aktifitas) {
+        // list.add(aktifitas);
+        aktifitasJPARepository.save(aktifitas);
+    }    
+
+      
 
     // @RequestMapping(value = "/updateperson", method = RequestMethod.PUT )
     // public String updatePerson(@RequestParam Integer id, Person person){
@@ -78,15 +77,6 @@ public class MainRestController {
     // }    
     
 
-    // @RequestMapping(value = "/gettodo", produces = {MediaType.APPLICATION_JSON_VALUE} )
-    // public Todo getTodo(){
-    //     return todoJPARepository.findAll().get(0);
-    // }    
-
-    // @RequestMapping(value = "/getaktifitas", produces = {MediaType.APPLICATION_JSON_VALUE} )
-    // public Aktifitas getAktifitas(){
-    //     return aktifitasJPARepository.findAll().get(0);
-    // }    
 
 
 }

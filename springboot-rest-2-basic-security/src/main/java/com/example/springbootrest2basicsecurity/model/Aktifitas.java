@@ -1,4 +1,4 @@
-package com.example.springbootsecurity3extended.model;
+package com.example.springbootrest2basicsecurity.model;
 
 import java.time.LocalDate;
 
@@ -29,6 +29,7 @@ public class Aktifitas {
 
     private String description = "";
 
+   
     // @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "todoBean", referencedColumnName = "ID")

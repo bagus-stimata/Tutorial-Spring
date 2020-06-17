@@ -3,18 +3,21 @@ package com.example.springbootrest2basicsecurity.SecurityConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.savedrequest.NullRequestCache;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
-@EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true) //Tidak bisa digunakan pada Vaadin
+// @EnableWebSecurity
+// @EnableGlobalMethodSecurity(prePostEnabled = true) //Tidak bisa digunakan pada Vaadin
 public class BasicConfiguration extends WebSecurityConfigurerAdapter {
 
 
@@ -25,8 +28,9 @@ public class BasicConfiguration extends WebSecurityConfigurerAdapter {
     // // protected void configure(HttpSecurity http) throws Exception {
     // //     http.authorizeRequests().anyRequest().permitAll();          
     // // }
-    @Autowired
-    private LoggingAccessDeniedHandler accessDeniedHandler;
+
+    // @Autowired
+    // private LoggingAccessDeniedHandler accessDeniedHandler;
 
     @Override
 	protected void configure(HttpSecurity http) throws Exception {
@@ -38,20 +42,27 @@ public class BasicConfiguration extends WebSecurityConfigurerAdapter {
              * 
              * Khusus untuk vaadin .csrf harus di dsable
              */
-            // .csrf().disable()
+            .csrf().disable()
             //If you are using rest try to use this
             .httpBasic()
+            .and()
+
+            .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().
+                authorizeRequests().antMatchers(HttpMethod.GET, "/**").hasAnyRole("ADMIN", "USER")
+                                .antMatchers(HttpMethod.POST, "/**").hasAnyRole("ADMIN", "USER")
+                                .antMatchers(HttpMethod.POST, "/**").hasRole("ADMIN")
+                                .antMatchers(HttpMethod.DELETE, "/**").hasRole("ADMIN").and().
+                requestCache().requestCache(new NullRequestCache())
             .and()
 
 			.authorizeRequests()
                 // .antMatchers( "/**" ).permitAll() // Untuk pMelakukan Permit kepada semua dan tidak perlu otorisasi: Mengacu pada contoh diatas
                 // .antMatchers( "/", "/home", "resources/**", "/registration" ).permitAll() // daftar un-secure page
                 .antMatchers(
-                    "/",
+                    "/**",
                     "/js/**",
                     "/css/**",
                     "/img/**",
-                    // "/employee",
                     "/webjars/**", "/registration").permitAll()
 
                 /**
@@ -78,15 +89,31 @@ public class BasicConfiguration extends WebSecurityConfigurerAdapter {
                 .clearAuthentication(true)
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessUrl("/login?logout")
-                .permitAll()
-            .and()
-            .exceptionHandling()
-                .accessDeniedHandler(accessDeniedHandler);
+                .permitAll();
+            // .and()
+            // .exceptionHandling()
+            //     .accessDeniedHandler(accessDeniedHandler);
                 
     }
     
+    // @Autowired
+    // private RESTAuthenticationEntryPoint authenticationEntryPoint;
 
-
+    // @Override
+    // protected void configure(HttpSecurity http) throws Exception {
+    //     http
+    //     .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().
+    //         authorizeRequests().antMatchers(HttpMethod.GET, "/**").hasAnyRole("ADMIN", "USER")
+    //                            .antMatchers(HttpMethod.POST, "/routeA/**").hasAnyRole("ADMIN", "USER")
+    //                            .antMatchers(HttpMethod.POST, "/routeB/**").hasRole("ADMIN")
+    //                            .antMatchers(HttpMethod.DELETE, "/routeB/**").hasRole("ADMIN").and().
+    //         requestCache().requestCache(new NullRequestCache()).and().
+    //         httpBasic()
+    //         // .authenticationEntryPoint(authenticationEntryPoint)
+    //         .and().
+    //         cors().and().
+    //         csrf().disable();
+    // }
 
     // @Autowired
     // private MyBasicAuthenticationEntryPoint authenticationEntryPoint;

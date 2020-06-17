@@ -2,6 +2,7 @@ package com.example.springbootsecurity3extended.web_controller;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -39,41 +40,50 @@ public class PersonController {
     PersonJPARepository personJPARepository;
 
     List<Person> list = new ArrayList<>(Arrays.asList(
-        new Person(1, "Aktifitas 1", null),
-        new Person(2, "Aktifitas 2", null)
+        new Person(1, "Person 1", null),
+        new Person(2, "Person 2", null)
     ));
 
-    @RequestMapping(value = "/getperson/{id}", produces = {MediaType.APPLICATION_XML_VALUE} )
+    @RequestMapping(value = "/getperson/{id}", produces = {MediaType.APPLICATION_JSON_VALUE} )
     public Person getAktifitas(@PathVariable("id") int id){
         // return list.get(0); 
-        return personJPARepository.findAll().get(0);
+        return personJPARepository.findById(id);
     }    
 
 
-    @RequestMapping(value = "/getallperson", produces = {MediaType.APPLICATION_XML_VALUE} )
+    @RequestMapping(value = "/getallperson", produces = {MediaType.APPLICATION_JSON_VALUE} )
     public List<Person> getAllMessage(){
         // return list;
         return personJPARepository.findAll();
     }
 
-    @RequestMapping(value = "/createperson", method = RequestMethod.POST,  consumes = MediaType.APPLICATION_XML_VALUE)
-    public void createAktifitas(@RequestBody Person person) {
-        // list.add(aktifitas);
-        personJPARepository.save(person);
+    @RequestMapping(value = "/createperson", method = RequestMethod.POST,  consumes = MediaType.APPLICATION_JSON_VALUE)
+    public Person createAktifitas(@RequestBody Person person) {
+        // list.add(person);
+        return personJPARepository.save(person);       
     }    
 
       
 
-    // @RequestMapping(value = "/updateperson", method = RequestMethod.PUT )
-    // public String updatePerson(@RequestParam Integer id, Person person){
-    //     personJPARepository.save(person);
-    //     return "redirect:/";
-    // }    
-    // @RequestMapping(value = "/deleteperson", method = RequestMethod.DELETE )
-    // public String updatePerson(@RequestParam Integer id){
-    //     personJPARepository.deleteById(id);
-    //     return "redirect:/";
-    // }    
+    @RequestMapping(value = "/updateperson/{id}", method = RequestMethod.PUT )
+    public Person updatePerson(@PathVariable("id") Integer id, @RequestBody Person person){
+        Optional<Person> newPerson = personJPARepository.findById(id);
+        if (! newPerson.isEmpty()) {
+            personJPARepository.save(person);
+        }
+
+        return newPerson.orElse(new Person());
+    }    
+    
+    @RequestMapping(value = "/deleteperson/{id}", method = RequestMethod.DELETE )
+    public Person updatePerson(@PathVariable("id") Integer id){
+        Optional<Person> newPerson = personJPARepository.findById(id);
+        if (! newPerson.isEmpty()) {
+            personJPARepository.delete(newPerson.get());
+        }
+        
+        return newPerson.orElse(new Person());
+    }    
     
 
 

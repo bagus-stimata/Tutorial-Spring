@@ -1,4 +1,4 @@
-package com.example.springbootsecurity3extended.model;
+package com.example.springbootrest2basicsecurity.model;
 
 import java.util.List;
 
@@ -29,7 +29,7 @@ public class Person {
     private String address = "";
 
     
-    @JsonBackReference
+    @JsonBackReference //Tidak diberi juga bisa
     @OneToMany(mappedBy = "personBean", cascade=CascadeType.ALL)
     private List<Todo> todos;
     

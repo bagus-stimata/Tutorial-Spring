@@ -1,9 +1,9 @@
-package com.example.springbootsecurity3extended.jpa_repository;
+package com.example.springbootrest2basicsecurity.repository;
 
 import java.util.Collection;
 import java.util.List;
 
-import com.example.springbootsecurity3extended.model.Person;
+import com.example.springbootrest2basicsecurity.model.Person;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;

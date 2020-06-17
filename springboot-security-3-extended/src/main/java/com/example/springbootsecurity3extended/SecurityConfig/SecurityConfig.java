@@ -1,7 +1,10 @@
 package com.example.springbootsecurity3extended.SecurityConfig;
 
+import com.example.springbootsecurity3extended.model.Role;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -9,8 +12,10 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.savedrequest.NullRequestCache;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
@@ -103,8 +108,24 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
              * 
              * Khusus untuk vaadin .csrf harus di dsable
              */
-            // .csrf().disable()
+            .csrf().disable()
             .httpBasic()
+            .and()
+
+            // .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().
+            //     authorizeRequests().antMatchers(HttpMethod.GET, "/**").hasAnyRole("ADMIN", "USER")
+            //                     .antMatchers(HttpMethod.POST, "/r**").hasAnyRole("ADMIN", "USER")
+            //                     .antMatchers(HttpMethod.POST, "/**").hasRole("ADMIN")
+            //                     .antMatchers(HttpMethod.DELETE, "/**").hasRole("ADMIN").and().
+            //     requestCache().requestCache(new NullRequestCache())
+            // .and()
+
+            .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().
+                authorizeRequests().antMatchers(HttpMethod.GET, "/**").hasAnyRole("ADMIN", "USER")
+                                .antMatchers(HttpMethod.POST, "/**").hasAnyRole("ADMIN", "USER")
+                                .antMatchers(HttpMethod.POST, "/**").hasRole("ADMIN")
+                                .antMatchers(HttpMethod.DELETE, "/**").hasRole("ADMIN").and().
+                requestCache().requestCache(new NullRequestCache())
             .and()
 
 			.authorizeRequests()
