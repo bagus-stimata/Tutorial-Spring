@@ -1,8 +1,8 @@
-package com.example.model;
+package com.example.springbootrest1basic.model;
 
-import javax.xml.bind.annotation.XmlRootElement;
+//import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement
+//@XmlRootElement
 public class Employee {
 	private int id;
 	private String name;
