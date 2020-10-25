@@ -106,11 +106,11 @@ public class SpringBootRestController {
                 .toUriString();
         UploadFileResponse response = new UploadFileResponse(fileName, fileDownloadUri,
                 file.getContentType(), file.getSize());
-        if (response==null) {
-            System.out.println("RESPONSE NYA NULL BOS");
-        }else {
-            System.out.println("Ada Isinya kok: " + response.getFileDownloadUri() + " >> " + response.getFileName());
-        }
+//        if (response==null) {
+//            System.out.println("RESPONSE NYA NULL BOS");
+//        }else {
+//            System.out.println("Ada Isinya kok: " + response.getFileDownloadUri() + " >> " + response.getFileName());
+//        }
         return response;
     }
 
