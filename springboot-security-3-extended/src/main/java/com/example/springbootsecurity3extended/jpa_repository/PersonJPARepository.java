@@ -36,10 +36,17 @@ public interface PersonJPARepository extends JpaRepository<Person, Integer>{
 
 
       @Query("SELECT u FROM Person u WHERE u.name LIKE :name_ and u.address LIKE :alamat")
-      Person findUserByNameAndAddress_NamedParam(@Param("name_") String name_, @Param("alamat") String alamat);
+      Person findPersonByNameAndAddress_NamedParam(@Param("name_") String name_, @Param("alamat") String alamat);
 
         @Modifying
         @Query( value = "INSERT INTO Person (id, name, address) values (:id_, :name_, :address_ )",
         nativeQuery = true)
-        void insertUser(@Param("id_") Integer id_, @Param("name_") String name_, @Param("address_") String status_ );
+        void inserPerson(@Param("id_") Integer id_, @Param("name_") String name_, @Param("address_") String status_ );
+
+
+        @Query("SELECT u FROM Person u WHERE u.name LIKE :name ")
+        List<Person> findAllPerson(String name);
+  
+
+
 }

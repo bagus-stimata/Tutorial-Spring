@@ -1,6 +1,6 @@
 package com.example.springbootsecurity1vaadin.ui.views;
 
-import com.example.springbootsecurity1vaadin.model.Role;
+import com.example.springbootsecurity1vaadin.security_model.Role;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;

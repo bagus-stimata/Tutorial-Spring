@@ -1,6 +1,6 @@
 package com.example.springbootsecurity1vaadin;
 
-import com.example.springbootsecurity1vaadin.SecurityConfig.SecurityUtils;
+import com.example.springbootsecurity1vaadin.security_config.SecurityUtils;
 import com.example.springbootsecurity1vaadin.ui.views.AdminView;
 import com.example.springbootsecurity1vaadin.ui.views.UserView;
 import com.example.springbootsecurity1vaadin.ui.views.BaristaView;

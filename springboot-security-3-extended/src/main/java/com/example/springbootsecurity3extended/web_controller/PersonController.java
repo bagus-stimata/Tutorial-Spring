@@ -54,7 +54,8 @@ public class PersonController {
     @RequestMapping(value = "/getallperson", produces = {MediaType.APPLICATION_JSON_VALUE} )
     public List<Person> getAllMessage(){
         // return list;
-        return personJPARepository.findAll();
+        // return personJPARepository.findAll();
+        return personJPARepository.findAllPerson("%Tyat%");
     }
 
     @RequestMapping(value = "/createperson", method = RequestMethod.POST,  consumes = MediaType.APPLICATION_JSON_VALUE)

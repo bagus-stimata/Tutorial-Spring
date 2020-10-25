@@ -100,7 +100,7 @@ public class AuthUserDetailsService implements UserDetailsService {
         return authList;
     }
 
-    private FUser getUserDetail(String usernameOrEmail) {
+    public FUser getUserDetail(String usernameOrEmail) {
         FUser user = usersRepository.findByUsername(usernameOrEmail);
         if (user ==null) {
             user = usersRepository.findByEmail(usernameOrEmail);

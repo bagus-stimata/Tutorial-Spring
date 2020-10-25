@@ -112,6 +112,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
             .httpBasic()
             .and()
 
+            //MASIH TANDA TANYA
             // .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().
             //     authorizeRequests().antMatchers(HttpMethod.GET, "/**").hasAnyRole("ADMIN", "USER")
             //                     .antMatchers(HttpMethod.POST, "/r**").hasAnyRole("ADMIN", "USER")
@@ -120,13 +121,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
             //     requestCache().requestCache(new NullRequestCache())
             // .and()
 
-            .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().
-                authorizeRequests().antMatchers(HttpMethod.GET, "/**").hasAnyRole("ADMIN", "USER")
-                                .antMatchers(HttpMethod.POST, "/**").hasAnyRole("ADMIN", "USER")
-                                .antMatchers(HttpMethod.POST, "/**").hasRole("ADMIN")
-                                .antMatchers(HttpMethod.DELETE, "/**").hasRole("ADMIN").and().
-                requestCache().requestCache(new NullRequestCache())
-            .and()
+            // .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().
+            //     authorizeRequests().antMatchers(HttpMethod.GET, "/**").hasAnyRole("ADMIN", "USER")
+            //                     .antMatchers(HttpMethod.POST, "/**").hasAnyRole("ADMIN", "USER")
+            //                     .antMatchers(HttpMethod.POST, "/**").hasRole("ADMIN")
+            //                     .antMatchers(HttpMethod.DELETE, "/**").hasRole("ADMIN").and().
+            //     requestCache().requestCache(new NullRequestCache())
+            // .and()
 
 			.authorizeRequests()
                 // .antMatchers( "/**" ).permitAll() // Untuk pMelakukan Permit kepada semua dan tidak perlu otorisasi: Mengacu pada contoh diatas
