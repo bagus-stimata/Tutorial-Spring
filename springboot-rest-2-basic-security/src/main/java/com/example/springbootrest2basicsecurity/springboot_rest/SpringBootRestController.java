@@ -1,10 +1,8 @@
-package com.example.springbootrest1basic.springboot_rest;
+package com.example.springbootrest2basicsecurity.springboot_rest;
 
-import com.example.springbootrest1basic.model.DataFactory;
-import com.example.springbootrest1basic.model.DataRepository;
-import com.example.springbootrest1basic.model.Employee;
-
-import com.example.springbootrest1basic.model.UploadFileResponse;
+import com.example.springbootrest2basicsecurity.model.DataRepository;
+import com.example.springbootrest2basicsecurity.model.Employee;
+import com.example.springbootrest2basicsecurity.model.UploadFileResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +10,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -64,6 +63,8 @@ public class SpringBootRestController {
         return emp;
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+//    @PreAuthorize("hasRole('ADMIN')")
     @RequestMapping(value = "/getListEmployee", method = RequestMethod.GET,
             produces = { "application/json" })
     public Collection<Employee> getListEmployee() {
@@ -131,6 +132,8 @@ public class SpringBootRestController {
                 .collect(Collectors.toList());
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+//    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/downloadFile/{fileName:.+}")
     public ResponseEntity<Resource> downloadFile(@PathVariable String fileName, HttpServletRequest request) {
         // Load file as Resource

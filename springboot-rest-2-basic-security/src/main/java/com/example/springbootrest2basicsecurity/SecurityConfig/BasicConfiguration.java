@@ -17,7 +17,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 // @EnableWebSecurity
-// @EnableGlobalMethodSecurity(prePostEnabled = true) //Tidak bisa digunakan pada Vaadin
+ @EnableGlobalMethodSecurity(prePostEnabled = true) //Tidak bisa digunakan pada Vaadin
 public class BasicConfiguration extends WebSecurityConfigurerAdapter {
 
 

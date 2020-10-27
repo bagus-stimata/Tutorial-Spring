@@ -46,7 +46,8 @@ public class MainController {
         return "index";
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+//    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRoles({'ADMIN', 'USER'})")
     @GetMapping("/admin-view")
     // @ResponseBody //supaya tidak memerlukan homeIndex.html -> Jadi sperti rest
     public String adminPage(){
