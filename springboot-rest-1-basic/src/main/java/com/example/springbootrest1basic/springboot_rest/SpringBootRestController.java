@@ -64,6 +64,7 @@ public class SpringBootRestController {
         return emp;
     }
 
+    @CrossOrigin
     @RequestMapping(value = "/getListEmployee", method = RequestMethod.GET,
             produces = { "application/json" })
     public Collection<Employee> getListEmployee() {

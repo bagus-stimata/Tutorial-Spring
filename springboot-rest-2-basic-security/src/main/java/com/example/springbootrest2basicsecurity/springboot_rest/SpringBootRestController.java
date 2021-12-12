@@ -116,7 +116,7 @@ public class SpringBootRestController {
     }
     @PostMapping("/uploadFileString")
     public String uploadFileString(@RequestParam("file") MultipartFile file) {
-        System.out.println("Memanggil Multi Part String");
+//        System.out.println("Memanggil Multi Part String");
 
         String fileName = fileStorageService.storeFile(file);
 //        System.out.println("Hello pak ade londho: " + fileName);
